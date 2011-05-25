@@ -1,0 +1,11 @@
+Mobile Presence Framework
+
+This tool is designed to support an institution's mobile presence. It
+does not in itself provide services to mobile devices; it provides a
+way to track various services and group them into packages. A package
+is a collections of services related by the intended audience. A given
+service may be in multiple packages, and a given package may have
+multiple services. The MPF manages packages and services, allowing for
+easy addition/removal of services and packages, and automatically
+generating appropriate nav frameworks for each given package.
+
