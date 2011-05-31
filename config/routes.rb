@@ -4,6 +4,12 @@ Mpf::Application.routes.draw do
   get "pages/about"
 
   get "pages/help"
+  
+  namespace "admin" do
+    get "pages/home"
+    get "pages/about"
+    get "pages/help"
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
