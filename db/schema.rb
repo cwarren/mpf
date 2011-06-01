@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(:version => 20110531191735) do
 
   create_table "mobile_services", :force => true do |t|
     t.string   "title",         :default => "service default title"
-    t.text     "desciption",    :default => "service default description"
+    t.text     "description",   :default => "service default description"
     t.string   "icon",          :default => ""
     t.string   "url",           :default => "",                            :null => false
     t.boolean  "is_live",       :default => false

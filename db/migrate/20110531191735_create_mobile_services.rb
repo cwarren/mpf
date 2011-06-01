@@ -2,7 +2,7 @@ class CreateMobileServices < ActiveRecord::Migration
   def self.up
     create_table :mobile_services do |t|
       t.string :title, :default => "service default title"
-      t.text :desciption, :default => "service default description"
+      t.text :description, :default => "service default description"
       t.string :icon, :default => ""
       t.string :url, :default => "", :null => false
       t.boolean :is_live, :default => "false"
