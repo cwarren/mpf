@@ -21,7 +21,7 @@ describe Admin::PagesController do
       response.should be_success
     end
     it "should have the correct title" do
-      get 'home'
+      get 'about'
       response.should have_selector("title", :content => "Williams College MPF : Admin About")
     end
   end
@@ -32,7 +32,7 @@ describe Admin::PagesController do
       response.should be_success
     end
     it "should have the correct title" do
-      get 'home'
+      get 'help'
       response.should have_selector("title", :content => "Williams College MPF : Admin Help")
     end
   end

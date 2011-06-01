@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @mobile_service.title %>
+</p>
+
+<p>
+  <b>Desciption:</b>
+  <%= @mobile_service.desciption %>
+</p>
+
+<p>
+  <b>Icon:</b>
+  <%= @mobile_service.icon %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%= @mobile_service.url %>
+</p>
+
+<p>
+  <b>Is live:</b>
+  <%= @mobile_service.is_live %>
+</p>
+
+<p>
+  <b>Is restricted:</b>
+  <%= @mobile_service.is_restricted %>
+</p>
+
+
+<%= link_to 'All Mobile Services', mobile_services_path %>

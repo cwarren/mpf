@@ -1,0 +1,28 @@
+<h1>Listing mobile_services</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Desciption</th>
+    <th>Icon</th>
+    <th>Url</th>
+    <th>Is live</th>
+    <th>Is restricted</th>
+    <th></th>
+  </tr>
+
+<% @mobile_services.each do |mobile_service| %>
+  <tr>
+    <td><%= mobile_service.title %></td>
+    <td><%= mobile_service.desciption %></td>
+    <td><%= mobile_service.icon %></td>
+    <td><%= mobile_service.url %></td>
+    <td><%= mobile_service.is_live %></td>
+    <td><%= mobile_service.is_restricted %></td>
+    <td><%= link_to 'Show', mobile_service %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
