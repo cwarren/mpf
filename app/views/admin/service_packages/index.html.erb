@@ -1,0 +1,21 @@
+<h1>Listing service_packages</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @service_packages.each do |service_package| %>
+  <tr>
+    <td><%= link_to 'Show', service_package %></td>
+    <td><%= link_to 'Edit', edit_admin_service_package_path(service_package) %></td>
+    <td><%= link_to 'Destroy', service_package, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Service package', new_admin_service_package_path %>

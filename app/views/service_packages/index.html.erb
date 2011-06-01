@@ -1,0 +1,15 @@
+<h1>Listing service_packages</h1>
+
+<table>
+  <tr>
+    <th></th>
+  </tr>
+
+<% @service_packages.each do |service_package| %>
+  <tr>
+    <td><%= link_to 'Show', service_package %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
