@@ -1,4 +1,5 @@
 class MobileService < ActiveRecord::Base
+  
   validates :title, :presence => true,
                     :length => { :minimum => 1 }, 
                     :uniqueness => true, 
@@ -14,5 +15,7 @@ class MobileService < ActiveRecord::Base
   validates :url,  :presence => true,
                     :length => { :minimum => 1 }, 
                     :uniqueness => true
+
+  has_and_belongs_to_many :service_packages, :join_table => "package_memberships"
 
 end

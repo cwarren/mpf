@@ -16,4 +16,7 @@ class ServicePackage < ActiveRecord::Base
   validates :icon,  :presence => true,
                     :length => { :minimum => 1 }, 
                     :uniqueness => true
+
+  has_and_belongs_to_many :mobile_services, :join_table => "package_memberships"
+  
 end
