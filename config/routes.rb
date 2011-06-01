@@ -1,6 +1,6 @@
 Mpf::Application.routes.draw do
   resources :mobile_services, :only => [:index, :show], :constraints => { :id => /[0-9]*/ }
-  #match ':mobile_services/:new' => 'mobile_services#index'
+  resources :service_packages, :only => [:index, :show], :constraints => { :id => /[0-9]*/ }
 
   get "pages/home"
   get "pages/about"
@@ -11,6 +11,7 @@ Mpf::Application.routes.draw do
     get "pages/about"
     get "pages/help"
     resources :mobile_services
+    resources :service_packages
   end
 
   # The priority is based upon order of creation:

@@ -6,8 +6,8 @@ describe MobileService do
     @ms_complete_in_db = MobileService.create!({
                                                 :title => "complete_ms_db",
                                                 :description => "a mobile service with all fields valid, though not necessarily meaningful",
-                                                :icon=>"msicons/foo.png",
-                                                :url=>"http://foo/ms",
+                                                :icon=>"msicons/foo_db.png",
+                                                :url=>"http://foo/ms_db",
                                                 :is_live=>true,
                                                 :is_restricted=>false})
   end
