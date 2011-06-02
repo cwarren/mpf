@@ -55,7 +55,7 @@ describe Admin::MobileServicesController do
       it "redirects to the created mobile_service" do
         MobileService.stub(:new) { mock_mobile_service(:save => true) }
         post :create, :mobile_service => {}
-        response.should redirect_to(mobile_service_url(mock_mobile_service))
+        response.should redirect_to(admin_mobile_service_url(mock_mobile_service))
       end
     end
 
@@ -91,7 +91,7 @@ describe Admin::MobileServicesController do
       it "redirects to the mobile_service" do
         MobileService.stub(:find) { mock_mobile_service(:update_attributes => true) }
         put :update, :id => "1"
-        response.should redirect_to(mobile_service_url(mock_mobile_service))
+        response.should redirect_to(admin_mobile_service_url(mock_mobile_service))
       end
     end
 
@@ -120,7 +120,7 @@ describe Admin::MobileServicesController do
     it "redirects to the mobile_services list" do
       MobileService.stub(:find) { mock_mobile_service }
       delete :destroy, :id => "1"
-      response.should redirect_to(mobile_services_url)
+      response.should redirect_to(admin_mobile_services_url)
     end
   end
 

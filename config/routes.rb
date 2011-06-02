@@ -12,6 +12,7 @@ Mpf::Application.routes.draw do
     get "pages/help"
     resources :mobile_services
     resources :service_packages
+    resources :users
     root :to => 'pages#home'
   end
 

@@ -3,7 +3,7 @@
 <table>
   <tr>
     <th>Title</th>
-    <th>Desciption</th>
+    <th>Description</th>
     <th>Icon</th>
     <th>Url</th>
     <th>Is live</th>
@@ -16,14 +16,14 @@
 <% @mobile_services.each do |mobile_service| %>
   <tr>
     <td><%= mobile_service.title %></td>
-    <td><%= mobile_service.desciption %></td>
+    <td><%= mobile_service.description %></td>
     <td><%= mobile_service.icon %></td>
     <td><%= mobile_service.url %></td>
     <td><%= mobile_service.is_live %></td>
     <td><%= mobile_service.is_restricted %></td>
-    <td><%= link_to 'Show', mobile_service %></td>
+    <td><%= link_to 'Show', admin_mobile_service_path(mobile_service) %></td>
     <td><%= link_to 'Edit', edit_admin_mobile_service_path(mobile_service) %></td>
-    <td><%= link_to 'Destroy', mobile_service, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Destroy', admin_mobile_service_path(mobile_service), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

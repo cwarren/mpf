@@ -2,6 +2,11 @@
 
 <table>
   <tr>
+    <th>Title</th>
+    <th>Urlname</th>
+    <th>Description</th>
+    <th>Icon</th>
+    <th>Is live</th>
     <th></th>
     <th></th>
     <th></th>
@@ -9,9 +14,17 @@
 
 <% @service_packages.each do |service_package| %>
   <tr>
-    <td><%= link_to 'Show', service_package %></td>
+  
+    <td><%= service_package.title %></td>
+    <td><%= service_package.urlname %></td>
+    <td><%= service_package.description %></td>
+    <td><%= service_package.icon %></td>
+    <td><%= service_package.is_live %></td>
+
+  
+    <td><%= link_to 'Show', admin_service_package_path(service_package) %></td>
     <td><%= link_to 'Edit', edit_admin_service_package_path(service_package) %></td>
-    <td><%= link_to 'Destroy', service_package, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Destroy', admin_service_package_path(service_package), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

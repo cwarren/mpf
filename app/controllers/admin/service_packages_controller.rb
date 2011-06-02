@@ -53,7 +53,7 @@ class Admin::ServicePackagesController < Admin::AdminController
 
     respond_to do |format|
       if @service_package.save
-        format.html { redirect_to(@service_package, :notice => 'Service package was successfully created.') }
+        format.html { redirect_to(admin_service_package_url(@service_package), :notice => 'Service package was successfully created.') }
         format.xml  { render :xml => @service_package, :status => :created, :location => @service_package }
       else
         format.html { render :action => "new" }
@@ -69,7 +69,7 @@ class Admin::ServicePackagesController < Admin::AdminController
 
     respond_to do |format|
       if @service_package.update_attributes(params[:service_package])
-        format.html { redirect_to(@service_package, :notice => 'Service package was successfully updated.') }
+        format.html { redirect_to(admin_service_package_url(@service_package), :notice => 'Service package was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -85,7 +85,7 @@ class Admin::ServicePackagesController < Admin::AdminController
     @service_package.destroy
 
     respond_to do |format|
-      format.html { redirect_to(service_packages_url) }
+      format.html { redirect_to(admin_service_packages_url) }
       format.xml  { head :ok }
     end
   end

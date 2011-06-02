@@ -54,7 +54,7 @@ class Admin::MobileServicesController < Admin::AdminController
 
     respond_to do |format|
       if @mobile_service.save
-        format.html { redirect_to(@mobile_service, :notice => 'Mobile service was successfully created.') }
+        format.html { redirect_to(admin_mobile_service_url(@mobile_service), :notice => 'Mobile service was successfully created.') }
         format.xml  { render :xml => @mobile_service, :status => :created, :location => @mobile_service }
       else
         format.html { render :action => "new" }
@@ -70,7 +70,7 @@ class Admin::MobileServicesController < Admin::AdminController
 
     respond_to do |format|
       if @mobile_service.update_attributes(params[:mobile_service])
-        format.html { redirect_to(@mobile_service, :notice => 'Mobile service was successfully updated.') }
+        format.html { redirect_to(admin_mobile_service_url(@mobile_service), :notice => 'Mobile service was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -86,7 +86,7 @@ class Admin::MobileServicesController < Admin::AdminController
     @mobile_service.destroy
 
     respond_to do |format|
-      format.html { redirect_to(mobile_services_url) }
+      format.html { redirect_to(admin_mobile_services_url) }
       format.xml  { head :ok }
     end
   end

@@ -1,6 +1,8 @@
 <h1>Editing service_package</h1>
 
-<%= render 'form' %>
+<%= form_for(@service_package, :url => admin_service_package_path(@service_package) ) do |f| %>
+<%= render 'form_contents', :f => f %>
+<% end %>
 
-<%= link_to 'Show', @service_package %> |
+<%= link_to 'Show', admin_service_package_path(@service_package) %> |
 <%= link_to 'Back', admin_service_packages_path %>

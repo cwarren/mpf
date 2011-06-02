@@ -55,7 +55,7 @@ describe Admin::ServicePackagesController do
       it "redirects to the created service_package" do
         ServicePackage.stub(:new) { mock_service_package(:save => true) }
         post :create, :service_package => {}
-        response.should redirect_to(service_package_url(mock_service_package))
+        response.should redirect_to(admin_service_package_url(mock_service_package))
       end
     end
 
@@ -91,7 +91,7 @@ describe Admin::ServicePackagesController do
       it "redirects to the service_package" do
         ServicePackage.stub(:find) { mock_service_package(:update_attributes => true) }
         put :update, :id => "1"
-        response.should redirect_to(service_package_url(mock_service_package))
+        response.should redirect_to(admin_service_package_url(mock_service_package))
       end
     end
 
@@ -120,7 +120,7 @@ describe Admin::ServicePackagesController do
     it "redirects to the service_packages list" do
       ServicePackage.stub(:find) { mock_service_package }
       delete :destroy, :id => "1"
-      response.should redirect_to(service_packages_url)
+      response.should redirect_to(admin_service_packages_url)
     end
   end
 
