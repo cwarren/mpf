@@ -1,0 +1,17 @@
+h1 {clear: both;}
+
+.admin_nav {
+  height: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.admin_nav ul li {
+  list-style-type: none;
+  padding: 5px;
+  margin: 2px;
+  background: #ddd;
+  float: left;
+  width: 150px;
+  text-align: center;
+}

@@ -12,6 +12,7 @@ Mpf::Application.routes.draw do
     get "pages/help"
     resources :mobile_services
     resources :service_packages
+    root :to => 'pages#home'
   end
 
   # The priority is based upon order of creation:

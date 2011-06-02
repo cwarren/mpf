@@ -8,6 +8,16 @@
 </head>
 <body>
 
+<div class="admin_nav">
+ <ul>
+  <li><%= link_to 'Admin Home', admin_pages_home_path %></li>
+  <li><%= link_to 'Mobile Services', admin_mobile_services_path %></li>
+  <li><%= link_to 'Service Packages', admin_service_packages_path %></li>
+  <li><%= link_to 'Help', admin_pages_help_path %></li>
+  <li><%= link_to 'About', admin_pages_about_path %></li>
+ </ul>
+</div>
+
 <h1><%=@page_title%></h1>
 
 <%= yield %>

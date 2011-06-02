@@ -1,9 +1,14 @@
 class Admin::ServicePackagesController < Admin::AdminController
   
+  layout "admin/application"
+  
+  @@page_title_base = "Admin Service Package"
+  
   # GET /service_packages
   # GET /service_packages.xml
   def index
     @service_packages = ServicePackage.all
+    @page_title = @@page_title_base+"s"
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,7 +20,8 @@ class Admin::ServicePackagesController < Admin::AdminController
   # GET /service_packages/1.xml
   def show
     @service_package = ServicePackage.find(params[:id])
-
+    @page_title = @@page_title_base+" : "+@service_package.title
+    
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @service_package }
@@ -26,6 +32,7 @@ class Admin::ServicePackagesController < Admin::AdminController
   # GET /service_packages/new.xml
   def new
     @service_package = ServicePackage.new
+    @page_title = @@page_title_base+" : New"
 
     respond_to do |format|
       format.html # new.html.erb
@@ -36,6 +43,7 @@ class Admin::ServicePackagesController < Admin::AdminController
   # GET /service_packages/1/edit
   def edit
     @service_package = ServicePackage.find(params[:id])
+    @page_title = @@page_title_base+" : Edit "+@service_package.title
   end
 
   # POST /service_packages
