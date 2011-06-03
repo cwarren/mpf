@@ -6,7 +6,7 @@ describe MobileService do
     @ms_complete_in_db = MobileService.create!({
                                                 :title => "complete_ms_db",
                                                 :description => "a mobile service with all fields valid, though not necessarily meaningful",
-                                                :icon=>"msicons/foo_db.png",
+                                                :icon=> File.new(Rails.root + 'spec/fixtures/images/sample_icon_57_57.png'),
                                                 :url=>"http://foo/ms_db",
                                                 :is_live=>true,
                                                 :is_restricted=>false})
@@ -15,7 +15,7 @@ describe MobileService do
   before :each do
     @ms_complete = MobileService.new(title:"complete_ms",
                                      description:"a mobile service with all fields valid, though not necessarily meaningful",
-                                     icon:"msicons/foo.png",
+                                     icon:File.new(Rails.root + 'spec/fixtures/images/sample_icon_57_57.png'),
                                      url:"http://foo/ms",
                                      is_live:true,
                                      is_restricted:false)
