@@ -22,6 +22,9 @@
   <div>
     <%= f.label 'Icon' %><br />
     <%= f.file_field :icon %>
+    <% if @mobile_service.icon.exists? then %>
+      <%= image_tag @mobile_service.icon.url(:base) %>
+    <% end %>  
   </div>
   <div class="field">
     <%= f.label :url %><br />

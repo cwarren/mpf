@@ -12,7 +12,11 @@
 
 <p>
   <b>Icon:</b>
-  <%= @mobile_service.icon %>
+  <% if @mobile_service.icon.exists? then %>
+    <%= image_tag @mobile_service.icon.url(:base) %>
+  <% else %>
+    NO ICON! (should never be seen!)
+  <% end %>  
 </p>
 
 <p>

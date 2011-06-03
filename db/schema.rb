@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20110603155927) do
     t.string   "icon_file_name"
     t.string   "icon_content_type"
     t.integer  "icon_file_size"
+    t.datetime "icon_updated_at"
   end
 
   create_table "package_memberships", :id => false, :force => true do |t|

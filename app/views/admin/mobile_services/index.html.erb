@@ -17,7 +17,11 @@
   <tr>
     <td><%= mobile_service.title %></td>
     <td><%= mobile_service.description %></td>
-    <td><%= mobile_service.icon %></td>
+    <td><% if mobile_service.icon.exists? then %>
+      <%= image_tag mobile_service.icon.url(:base) %>
+    <% else %>
+      NO ICON! (should never be seen!)
+    <% end %></td>
     <td><%= mobile_service.url %></td>
     <td><%= mobile_service.is_live %></td>
     <td><%= mobile_service.is_restricted %></td>
