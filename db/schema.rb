@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110601190708) do
+ActiveRecord::Schema.define(:version => 20110602190635) do
 
   create_table "mobile_services", :force => true do |t|
     t.string   "title",         :default => "service default title"
@@ -36,6 +36,14 @@ ActiveRecord::Schema.define(:version => 20110601190708) do
     t.text     "description", :default => "package default description"
     t.string   "icon",        :default => ""
     t.boolean  "is_live",     :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "username"
+    t.string   "first_name"
+    t.string   "last_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
