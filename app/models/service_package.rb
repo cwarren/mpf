@@ -22,6 +22,8 @@ class ServicePackage < ActiveRecord::Base
   has_and_belongs_to_many :mobile_services, :join_table => "package_memberships"
   
   has_attached_file :icon,
+    :path => ":rails_root/public/data/:attachment_:class/:id/:style_:basename.:extension",
+    :url => "/data/:attachment_:class/:id/:style_:basename.:extension",
     :styles => {
                 :base     => "57x57#",
                 :x2       => "114x114#",
