@@ -9,6 +9,10 @@ describe Admin::MobileServicesController do
   render_views
 
   def mock_mobile_service(stubs={})
+    mock_icon = mock("testicon");
+    mock_icon.stub!(:url,"http://foo");
+    mock_icon.stub!(:exists?,true);
+    stubs['icon'] = mock_icon
     @mock_mobile_service ||= mock_model(MobileService, stubs).as_null_object
   end
 

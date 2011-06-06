@@ -13,10 +13,22 @@ class ServicePackage < ActiveRecord::Base
   validates :description, :presence => true,
                           :length => { :minimum => 0 }
 
-  validates :icon,  :presence => true,
-                    :length => { :minimum => 1 }, 
-                    :uniqueness => true
+#  validates :icon,  :presence => true,
+#                    :length => { :minimum => 1 }, 
+#                    :uniqueness => true
+                    
+  validates_attachment_presence :icon
 
   has_and_belongs_to_many :mobile_services, :join_table => "package_memberships"
   
+  has_attached_file :icon,
+    :styles => {
+                :base     => "57x57#",
+                :x2       => "114x114#",
+                :small    => "29x29#",
+                :small50  => "50x50#",
+                :x2small  => "58x58#",
+                :px72     => "72x72#"
+              }
+
 end

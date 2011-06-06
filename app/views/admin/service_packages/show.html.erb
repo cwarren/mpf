@@ -1,5 +1,33 @@
 <p id="notice"><%= notice %></p>
 
+<p>
+  <b>Title:</b>
+  <%= @service_package.title %>
+</p>
+
+<p>
+  <b>URL Name:</b>
+  <%= @service_package.urlname %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @service_package.description %>
+</p>
+
+<p>
+  <b>Icon:</b>
+  <% if @service_package.icon.exists? then %>
+    <%= image_tag @service_package.icon.url(:base) %>
+  <% else %>
+    NO ICON! (should never be seen!)
+  <% end %>  
+</p>
+
+<p>
+  <b>Is live:</b>
+  <%= @service_package.is_live %>
+</p>
 
 <%= link_to 'Edit', edit_admin_service_package_path(@service_package) %> |
 <%= link_to 'Back', admin_service_packages_path %>

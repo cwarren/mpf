@@ -9,6 +9,10 @@ describe Admin::ServicePackagesController do
   render_views
 
   def mock_service_package(stubs={})
+    mock_icon = mock("testicon");
+    mock_icon.stub!(:url,"http://foo");
+    mock_icon.stub!(:exists?,true);
+    stubs['icon'] = mock_icon
     @mock_service_package ||= mock_model(ServicePackage, stubs).as_null_object
   end
 
