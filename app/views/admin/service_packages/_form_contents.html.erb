@@ -32,10 +32,13 @@
     <% end %>  
   </div>
   
+  <% if controller.action_name != 'new'%>
   <div class="field">
     <%= f.label :is_live %><br />
-    <%= f.check_box :is_live %>
+    <%= f.check_box :is_live, {:class=>"is_live_checkbox"} %>
   </div>
+  <% end %>
+  
   <div class="actions">
     <%= f.submit %>
   </div>

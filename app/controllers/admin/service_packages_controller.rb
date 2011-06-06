@@ -50,7 +50,8 @@ class Admin::ServicePackagesController < Admin::AdminController
   # POST /service_packages.xml
   def create
     @service_package = ServicePackage.new(params[:service_package])
-
+    @service_package.is_live = false
+    
     respond_to do |format|
       if @service_package.save
         format.html { redirect_to(admin_service_package_url(@service_package), :notice => 'Service package was successfully created.') }

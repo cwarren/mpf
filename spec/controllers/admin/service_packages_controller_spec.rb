@@ -49,30 +49,43 @@ describe Admin::ServicePackagesController do
   end
 
   describe "POST create" do
+  
+    valid_param_set = {'title' => 'test title',
+                       'urlname' => 'testsp',
+                       'description' => 'a test service package',
+                       'icon' => File.new(Rails.root + 'spec/fixtures/images/sample_icon_57_57.png'),
+                       'is_live' => false}
+    
+    invalid_param_set = {'title' => 'test title',
+                         'urlname' => 'testsp',
+                         'description' => 'a test service package',
+                         'icon' => File.new(Rails.root + 'spec/fixtures/images/sample_icon_57_57.png'),
+                         'is_live' => true}
+
     describe "with valid params" do
       it "assigns a newly created service_package as @service_package" do
-        ServicePackage.stub(:new).with({'these' => 'params'}) { mock_service_package(:save => true) }
-        post :create, :service_package => {'these' => 'params'}
-        assigns(:service_package).should be(mock_service_package)
+        ServicePackage.stub(:new).with(valid_param_set) { mock_service_package(:save => true) }
+        post :create, :service_package => valid_param_set
+        assigns(:service_package).should be(mock_service_package)        
       end
 
       it "redirects to the created service_package" do
         ServicePackage.stub(:new) { mock_service_package(:save => true) }
-        post :create, :service_package => {}
-        response.should redirect_to(admin_service_package_url(mock_service_package))
-      end
+        post :create, :service_package => valid_param_set
+        response.should redirect_to(admin_service_package_url(mock_service_package(valid_param_set)))
+      end      
     end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved service_package as @service_package" do
-        ServicePackage.stub(:new).with({'these' => 'params'}) { mock_service_package(:save => false) }
-        post :create, :service_package => {'these' => 'params'}
+        ServicePackage.stub(:new).with(invalid_param_set) { mock_service_package(:save => false) }
+        post :create, :service_package => invalid_param_set
         assigns(:service_package).should be(mock_service_package)
       end
 
       it "re-renders the 'new' template" do
         ServicePackage.stub(:new) { mock_service_package(:save => false) }
-        post :create, :service_package => {}
+        post :create, :service_package => invalid_param_set
         response.should render_template("new")
       end
     end
