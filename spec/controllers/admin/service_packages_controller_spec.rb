@@ -16,6 +16,14 @@ describe Admin::ServicePackagesController do
     @mock_service_package ||= mock_model(ServicePackage, stubs).as_null_object
   end
 
+  def mock_mobile_service(stubs={})
+    mock_icon = mock("testicon");
+    mock_icon.stub!(:url,"http://foo");
+    mock_icon.stub!(:exists?,true);
+    stubs['icon'] = mock_icon
+    @mock_mobile_service ||= mock_model(MobileService, stubs).as_null_object
+  end
+
   describe "GET index" do
     it "assigns all service_packages as @service_packages" do
       ServicePackage.stub(:all) { [mock_service_package] }
@@ -43,8 +51,16 @@ describe Admin::ServicePackagesController do
   describe "GET edit" do
     it "assigns the requested service_package as @service_package" do
       ServicePackage.stub(:find).with("37") { mock_service_package }
+      MobileService.stub(:available) { [mock_mobile_service] }
       get :edit, :id => "37"
       assigns(:service_package).should be(mock_service_package)
+    end
+
+    it "assigns all available mobile services as @mobile_services" do
+      ServicePackage.stub(:find).with("37") { mock_service_package }
+      MobileService.stub(:available) { [mock_mobile_service] }
+      get :edit, :id => "37"
+      assigns(:mobile_services).should eq([mock_mobile_service])
     end
   end
 

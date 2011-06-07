@@ -14,7 +14,7 @@ class MobileService < ActiveRecord::Base
 
   validates_attachment_presence :icon
 
-  validates :url,  :presence => true,
+  validates :url,   :presence => true,
                     :length => { :minimum => 1 }, 
                     :uniqueness => true
 
@@ -32,4 +32,7 @@ class MobileService < ActiveRecord::Base
                 :px72     => "72x72#"
                 }
 
+  scope :available, where('is_live=1')
+  scope :public, where('is_live=1 and is_restricted=0')
+  
 end

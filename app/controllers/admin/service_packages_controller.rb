@@ -44,6 +44,7 @@ class Admin::ServicePackagesController < Admin::AdminController
   def edit
     @service_package = ServicePackage.find(params[:id])
     @page_title = @@page_title_base+" : Edit "+@service_package.title
+    @mobile_services = MobileService.available
   end
 
   # POST /service_packages

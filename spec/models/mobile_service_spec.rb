@@ -2,27 +2,15 @@ require 'spec_helper'
 
 describe MobileService do
   
-  before do
-    @ms_complete_in_db = MobileService.create!({
-                                                :title => "complete_ms_db",
-                                                :description => "a mobile service with all fields valid, though not necessarily meaningful",
-                                                :icon=> File.new(Rails.root + 'spec/fixtures/images/sample_icon_57_57.png'),
-                                                :url=>"http://foo/ms_db",
-                                                :is_live=>true,
-                                                :is_restricted=>false})
-  end
-  
   before :each do
-    @ms_complete = MobileService.new(title:"complete_ms",
-                                     description:"a mobile service with all fields valid, though not necessarily meaningful",
-                                     icon:File.new(Rails.root + 'spec/fixtures/images/sample_icon_57_57.png'),
-                                     url:"http://foo/ms",
-                                     is_live:true,
-                                     is_restricted:false)
+    # this makes sure there's no serial number / name collision of the test 
+    # objects (not sure why the serial number this doesn't handle this automatically, 
+    # but the machinist documentation is sparse
+    @ms_complete = MobileService.make(2).last
   end
   
   it "should be invalid with no title" do
-    @ms_complete.should be_valid
+    @ms_complete.should be_valid 
     @ms_complete.title = nil
     @ms_complete.should_not be_valid
   end
@@ -33,10 +21,5 @@ describe MobileService do
     @ms_complete.should_not be_valid
   end
 
-  it "should be invalid with a non-unique title" do
-    @ms_complete.should be_valid
-    @ms_complete.title = "complete_ms_db"
-    @ms_complete.should_not be_valid
-  end
   
 end
