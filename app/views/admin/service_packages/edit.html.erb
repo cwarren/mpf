@@ -9,17 +9,42 @@
 </div>
 
 <div class="right_col mobile_service_chooser">
- <h2>Services</h2>
-<% if @mobile_services.empty?%>
-<p>No services are available to put in packages.</p>
-<%else%>
-list available services here<br/>
-indicate which ones are already in this package<br/>
-provide a way to add more to this package<br/>
-provide a way to remove some from this package<br/>
-<%end%>
+  <div class="left_col services_in_package">
+    <h2>In Package</h2>
+    <%if @service_package.mobile_services.empty?%>
+      <p>No services in this package.</p>
+    <%else%>
+      <ul>
+        <% @service_package.mobile_services.each do |ms| %>
+        <li><%= link_to ((image_tag ms.icon.url(:base)) + ms.title),
+                         admin_mobile_service_path(ms) %></li>
+        <%end%>
+      </ul>
+    <%end%>
+  </div>
+
+  <div class="right_col available_services">
+    <h2>Available Services</h2>
+    <%if @mobile_services.empty?%>
+      <p>No services are available to put in packages.</p>
+    <%else%>
+      <ul>
+        <% (@mobile_services - @service_package.mobile_services).each do |ms| %>
+        <li><%= link_to ((image_tag ms.icon.url(:base)) + ms.title),
+                         admin_mobile_service_path(ms) %></li>
+        <%end%>
+      </ul>
+    <%end%>
+  </div>
+
+3. provide a way to add more services to this package (plus button on each available service)<br/>
+4. provide a way to remove some from this package (remove button on each package service)<br/>
+
 
 </div>
+
+
+
 
 <br clear="all"/>
 <%= link_to 'Show', admin_service_package_path(@service_package) %> |

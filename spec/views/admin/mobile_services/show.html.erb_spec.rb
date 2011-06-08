@@ -28,7 +28,8 @@ describe "admin/mobile_services/show.html.erb" do
     it "lists exactly the packages of which it is a member" do
       render
       rendered.should have_selector("div.service_package_list li a", :count => 2) do |m|
-        m.should contain(/(#{Regexp.quote(@mobile_service.service_packages[0].title)}|#{Regexp.quote(@mobile_service.service_packages[1].title)})/)
+        m.should contain(/#{Regexp.quote(@mobile_service.service_packages[0].title)}/)
+        m.should contain(/#{Regexp.quote(@mobile_service.service_packages[1].title)}/)
       end
     end
   end

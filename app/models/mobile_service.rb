@@ -8,10 +8,6 @@ class MobileService < ActiveRecord::Base
   validates :description, :presence => true,
                           :length => { :minimum => 0 }
 
-#  validates :icon,  :presence => true,
-#                    :length => { :minimum => 1 }, 
-#                    :uniqueness => true
-
   validates_attachment_presence :icon
 
   validates :url,   :presence => true,
@@ -32,7 +28,8 @@ class MobileService < ActiveRecord::Base
                 :px72     => "72x72#"
                 }
 
-  scope :available, where('is_live=1')
-  scope :public, where('is_live=1 and is_restricted=0')
+  default_scope order('title')
+  scope :available, where({:is_live=>true}).order('title')
+  scope :public, where({:is_live=>true,:is_restricted=>false}).order('title')
   
 end

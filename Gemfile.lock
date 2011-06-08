@@ -96,6 +96,6 @@ DEPENDENCIES
   paperclip (~> 2.3)
   rails (= 3.0.7)
   rspec (= 2.5.0)
-  rspec-rails (= 2.5.0)
+  rspec-rails (>= 2.5.0)
   sqlite3
   webrat (= 0.7.3)

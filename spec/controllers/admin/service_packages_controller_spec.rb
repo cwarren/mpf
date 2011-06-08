@@ -50,17 +50,21 @@ describe Admin::ServicePackagesController do
 
   describe "GET edit" do
     it "assigns the requested service_package as @service_package" do
-      ServicePackage.stub(:find).with("37") { mock_service_package }
-      MobileService.stub(:available) { [mock_mobile_service] }
+      sp = ServicePackage.make
+      ms = MobileService.make
+      ServicePackage.stub(:find).with("37") { sp }
+      MobileService.stub(:available) { [ms] }
       get :edit, :id => "37"
-      assigns(:service_package).should be(mock_service_package)
+      assigns(:service_package).should be(sp)
     end
 
     it "assigns all available mobile services as @mobile_services" do
-      ServicePackage.stub(:find).with("37") { mock_service_package }
-      MobileService.stub(:available) { [mock_mobile_service] }
+      sp = ServicePackage.make
+      ms = MobileService.make
+      ServicePackage.stub(:find).with("37") { sp }
+      MobileService.stub(:available) { [ms] }
       get :edit, :id => "37"
-      assigns(:mobile_services).should eq([mock_mobile_service])
+      assigns(:mobile_services).should eq([ms])
     end
   end
 
