@@ -83,7 +83,7 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.27)
-    webrat (0.7.1)
+    webrat (0.7.3)
       nokogiri (>= 1.2.0)
       rack (>= 1.0)
       rack-test (>= 0.5.3)
@@ -98,4 +98,4 @@ DEPENDENCIES
   rspec (= 2.5.0)
   rspec-rails (= 2.5.0)
   sqlite3
-  webrat (= 0.7.1)
+  webrat (= 0.7.3)

@@ -34,6 +34,20 @@
   <%= @mobile_service.is_restricted %>
 </p>
 
+<div class="service_package_list">
+ <b>In Service Packages:</b>
+ <ul>
+ <% if (@mobile_service.service_packages.empty?) %>
+  <li>None</li>
+ <% else %>
+     <% @mobile_service.service_packages.each do |sp| %>
+   <li><%= link_to ((image_tag sp.icon.url(:base)) + sp.title),
+                   admin_service_package_path(sp) %></li>
+     <% end
+   end %>
+ </ul>
+</div>
+
 
 <%= link_to 'Edit', edit_admin_mobile_service_path(@mobile_service) %> |
 <%= link_to 'Back', admin_mobile_services_path %>

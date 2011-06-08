@@ -68,7 +68,8 @@ class Admin::ServicePackagesController < Admin::AdminController
   # PUT /service_packages/1.xml
   def update
     @service_package = ServicePackage.find(params[:id])
-
+    @mobile_services = MobileService.available
+    
     respond_to do |format|
       if @service_package.update_attributes(params[:service_package])
         format.html { redirect_to(admin_service_package_url(@service_package), :notice => 'Service package was successfully updated.') }

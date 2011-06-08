@@ -3,8 +3,6 @@ class CreatePackageMemberships < ActiveRecord::Migration
     create_table :package_memberships, :id => false do |t|
       t.integer :mobile_service_id
       t.integer :service_package_id
-
-      t.timestamps
     end
   end
 

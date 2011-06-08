@@ -27,10 +27,8 @@ ActiveRecord::Schema.define(:version => 20110603191220) do
   end
 
   create_table "package_memberships", :id => false, :force => true do |t|
-    t.integer  "mobile_service_id"
-    t.integer  "service_package_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer "mobile_service_id"
+    t.integer "service_package_id"
   end
 
   create_table "service_packages", :force => true do |t|

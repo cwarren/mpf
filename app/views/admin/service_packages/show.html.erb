@@ -29,19 +29,19 @@
   <%= @service_package.is_live %>
 </p>
 
-<p>
+<div class="mobile_service_list">
  <b>Includes Mobiles Services:</b>
  <ul>
  <% if (@service_package.mobile_services.empty?) %>
   <li>None</li>
  <% else %>
-     <% service_package.mobile_services.each do |ms| %>
-   <li><%= link_to image_tag @mobile_service.icon.url(:base) + ms.title,
+     <% @service_package.mobile_services.each do |ms| %>
+   <li><%= link_to ((image_tag ms.icon.url(:base)) + ms.title),
                    admin_mobile_service_path(ms) %></li> 
   <% end
    end %>
  </ul>
-</p>
+</div>
 
 <%= link_to 'Edit', edit_admin_service_package_path(@service_package) %> |
 <%= link_to 'Back', admin_service_packages_path %>
