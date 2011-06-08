@@ -1,10 +1,26 @@
 <h1>Editing service_package</h1>
 
+<div class="left_col package_info">
 <%= form_for(@service_package,
              :html => { :multipart => true },
              :url => admin_service_package_path(@service_package) ) do |f| %>
 <%= render 'form_contents', :f => f %>
 <% end %>
+</div>
 
+<div class="right_col mobile_service_chooser">
+ <h2>Services</h2>
+<% if @mobile_services.empty?%>
+<p>No services are available to put in packages.</p>
+<%else%>
+list available services here<br/>
+indicate which ones are already in this package<br/>
+provide a way to add more to this package<br/>
+provide a way to remove some from this package<br/>
+<%end%>
+
+</div>
+
+<br clear="all"/>
 <%= link_to 'Show', admin_service_package_path(@service_package) %> |
 <%= link_to 'Back', admin_service_packages_path %>
