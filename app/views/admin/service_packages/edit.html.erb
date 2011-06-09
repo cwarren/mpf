@@ -1,3 +1,32 @@
+<script type="text/javascript">
+$(document).ready(function(){
+
+  $(".services_in_package  .add_service_button").hide();
+  $(".available_services  .remove_service_button").hide();
+
+  var no_service_item = "<li>No services</li>";
+
+  $(".add_service_button").click(function(){
+    $(".services_in_package ul li:contains('No services')").remove();
+    $(".services_in_package ul").append($(this).parent().detach());
+    $(this).parent().find(".button").toggle();
+    if ($(".available_services ul li").length == 0) { 
+      $(".available_services ul").append(no_service_item);
+    }
+  });
+
+  $(".remove_service_button").click(function(){
+    $(".available_services ul li:contains('No services')").remove();
+    $(".available_services ul").append($(this).parent().detach());
+    $(this).parent().find(".button").toggle();
+    if ($(".services_in_package ul li").length == 0) { 
+      $(".services_in_package ul").append(no_service_item);
+    }
+  });
+
+});
+</script>
+
 <h1>Editing service_package</h1>
 
 <div class="left_col package_info">
@@ -11,33 +40,29 @@
 <div class="right_col mobile_service_chooser">
   <div class="left_col services_in_package">
     <h2>In Package</h2>
-    <%if @service_package.mobile_services.empty?%>
-      <p>No services in this package.</p>
-    <%else%>
       <ul>
-        <% @service_package.mobile_services.each do |ms| %>
-          <%=admin_mobile_service_item(ms,"",remove_ms_button)%>
-        <%end%>
-      </ul>
+    <%if @service_package.mobile_services.empty?%>
+        <li>No services</li>
+    <%else%>
+      <% @service_package.mobile_services.each do |ms| %>
+        <%=admin_mobile_service_item(ms,add_ms_button,remove_ms_button)%>
+      <%end%>
     <%end%>
+      </ul>
   </div>
 
   <div class="right_col available_services">
-    <h2>Available Services</h2>
+    <h2>Available</h2>
     <%if @mobile_services.empty?%>
-      <p>No services are available to put in packages.</p>
+      <p>No services</p>
     <%else%>
       <ul>
         <% (@mobile_services - @service_package.mobile_services).each do |ms| %>
-          <%=admin_mobile_service_item(ms,add_ms_button)%>
+          <%=admin_mobile_service_item(ms,add_ms_button,remove_ms_button)%>
         <%end%>
       </ul>
     <%end%>
   </div>
-
-3. provide a way to add more services to this package (plus button on each available service?)<br/>
-4. provide a way to remove some from this package (remove button on each package service?)<br/>
-
 
 </div>
 
@@ -45,5 +70,6 @@
 
 
 <br clear="all"/>
+
 <%= link_to 'Show', admin_service_package_path(@service_package) %> |
 <%= link_to 'Back', admin_service_packages_path %>

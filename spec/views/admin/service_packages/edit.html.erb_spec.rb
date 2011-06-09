@@ -17,7 +17,7 @@ describe "admin/service_packages/edit.html.erb" do
 
     it "indicates there are no available services" do
       rendered.should have_selector("div.mobile_service_chooser") do |m|
-        m.should contain(/no services are available to put in packages/i)
+        m.should contain(/no services/i)
       end
     end
   end
@@ -46,9 +46,11 @@ describe "admin/service_packages/edit.html.erb" do
     end
     
     it "indicates that no services are currently in this package" do
-      rendered.should have_selector("div.mobile_service_chooser div.services_in_package ul li", :count => 0)
-      rendered.should have_selector("div.mobile_service_chooser div.services_in_package", :count => 1) do |m|
-        m.should contain(/no services in this package/i)
+#      rendered.should have_selector("div.mobile_service_chooser div.services_in_package ul li", :count => 1)
+#      rendered.should have_selector("div.mobile_service_chooser div.services_in_package", :count => 1) do |m|
+
+      rendered.should have_selector("div.mobile_service_chooser div.services_in_package ul li", :count => 1) do |m|
+        m.should contain(/no services/i)
       end
     end
     

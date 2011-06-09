@@ -36,7 +36,7 @@ gem 'jquery-rails', '>= 1.0.3'
 
 group :development, :test do
   gem 'machinist', '>= 2.0.0.beta2'
-  gem 'rspec', '2.5.0'
+  gem 'rspec', '>= 2.5.0'
   gem 'rspec-rails', '>= 2.5.0'
   gem 'webrat', '0.7.3'
 end
