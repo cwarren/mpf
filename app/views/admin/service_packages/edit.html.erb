@@ -16,8 +16,7 @@
     <%else%>
       <ul>
         <% @service_package.mobile_services.each do |ms| %>
-        <li><%= link_to ((image_tag ms.icon.url(:base)) + ms.title),
-                         admin_mobile_service_path(ms) %></li>
+          <%=admin_mobile_service_item(ms,"",remove_ms_button)%>
         <%end%>
       </ul>
     <%end%>
@@ -30,15 +29,14 @@
     <%else%>
       <ul>
         <% (@mobile_services - @service_package.mobile_services).each do |ms| %>
-        <li><%= link_to ((image_tag ms.icon.url(:base)) + ms.title),
-                         admin_mobile_service_path(ms) %></li>
+          <%=admin_mobile_service_item(ms,add_ms_button)%>
         <%end%>
       </ul>
     <%end%>
   </div>
 
-3. provide a way to add more services to this package (plus button on each available service)<br/>
-4. provide a way to remove some from this package (remove button on each package service)<br/>
+3. provide a way to add more services to this package (plus button on each available service?)<br/>
+4. provide a way to remove some from this package (remove button on each package service?)<br/>
 
 
 </div>

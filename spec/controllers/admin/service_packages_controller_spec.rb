@@ -6,7 +6,7 @@ require 'spec_helper'
 
 describe Admin::ServicePackagesController do
 
-  render_views
+  #render_views
 
   def mock_service_package(stubs={})
     mock_icon = mock("testicon");
@@ -53,7 +53,7 @@ describe Admin::ServicePackagesController do
       sp = ServicePackage.make
       ms = MobileService.make
       ServicePackage.stub(:find).with("37") { sp }
-      MobileService.stub(:available) { [ms] }
+      MobileService.stub(:all) { [ms] }
       get :edit, :id => "37"
       assigns(:service_package).should be(sp)
     end
@@ -62,7 +62,7 @@ describe Admin::ServicePackagesController do
       sp = ServicePackage.make
       ms = MobileService.make
       ServicePackage.stub(:find).with("37") { sp }
-      MobileService.stub(:available) { [ms] }
+      MobileService.stub(:all) { [ms] }
       get :edit, :id => "37"
       assigns(:mobile_services).should eq([ms])
     end

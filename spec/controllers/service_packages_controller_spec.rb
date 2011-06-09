@@ -6,7 +6,7 @@ require 'spec_helper'
 
 describe ServicePackagesController do
 
-  render_views
+  #render_views
 
   def mock_service_package(stubs={})
     @mock_service_package ||= mock_model(ServicePackage, stubs).as_null_object

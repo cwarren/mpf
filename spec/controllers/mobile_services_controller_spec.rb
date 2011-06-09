@@ -6,7 +6,7 @@ require 'spec_helper'
 
 describe MobileServicesController do
 
-  render_views
+  #render_views
   
   def mock_mobile_service(stubs={})
     @mock_mobile_service ||= mock_model(MobileService, stubs).as_null_object

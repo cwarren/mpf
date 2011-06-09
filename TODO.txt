@@ -1,5 +1,4 @@
 TODO
-- change available->live
-  + find the places 'available' is used
-- don't restrict package additions only to live services
+
+
 

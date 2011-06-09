@@ -52,7 +52,13 @@ describe "admin/service_packages/edit.html.erb" do
       end
     end
     
-    it "has uniquely identifiable service elements"
+    it "has uniquely identifiable service elements" do
+      rendered.should have_selector("div.mobile_service_chooser div.available_services ul") do |m|
+        m.should have_selector("li#ms_"+@mobile_services[0].id.to_s)
+        m.should have_selector("li#ms_"+@mobile_services[1].id.to_s)
+        m.should have_selector("li#ms_"+@mobile_services[2].id.to_s)
+      end
+    end
     
     it "allows services to be added to the package"
   

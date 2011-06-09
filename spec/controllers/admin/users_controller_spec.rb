@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Admin::UsersController do
 
-  render_views
+  #render_views
 
   def mock_user(stubs={})
     @mock_user ||= mock_model(User, stubs).as_null_object

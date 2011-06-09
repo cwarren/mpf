@@ -29,7 +29,7 @@ class MobileService < ActiveRecord::Base
                 }
 
   default_scope order('title')
-  scope :available, where({:is_live=>true}).order('title')
+  scope :live, where({:is_live=>true}).order('title')
   scope :public, where({:is_live=>true,:is_restricted=>false}).order('title')
   
 end

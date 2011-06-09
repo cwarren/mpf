@@ -44,7 +44,7 @@ class Admin::ServicePackagesController < Admin::AdminController
   def edit
     @service_package = ServicePackage.find(params[:id])
     @page_title = @@page_title_base+" : Edit "+@service_package.title
-    @mobile_services = MobileService.available
+    @mobile_services = MobileService.all
   end
 
   # POST /service_packages
@@ -68,7 +68,7 @@ class Admin::ServicePackagesController < Admin::AdminController
   # PUT /service_packages/1.xml
   def update
     @service_package = ServicePackage.find(params[:id])
-    @mobile_services = MobileService.available
+    @mobile_services = MobileService.all
     
     respond_to do |format|
       if @service_package.update_attributes(params[:service_package])
