@@ -9,6 +9,8 @@ gem 'sqlite3'
 
 gem 'paperclip', "~> 2.3"
 
+gem 'jquery-rails', '>= 1.0.3'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
