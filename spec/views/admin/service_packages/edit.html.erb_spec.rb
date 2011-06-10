@@ -46,8 +46,6 @@ describe "admin/service_packages/edit.html.erb" do
     end
     
     it "indicates that no services are currently in this package" do
-#      rendered.should have_selector("div.mobile_service_chooser div.services_in_package ul li", :count => 1)
-#      rendered.should have_selector("div.mobile_service_chooser div.services_in_package", :count => 1) do |m|
 
       rendered.should have_selector("div.mobile_service_chooser div.services_in_package ul li", :count => 1) do |m|
         m.should contain(/no services/i)

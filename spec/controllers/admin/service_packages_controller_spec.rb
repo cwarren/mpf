@@ -161,4 +161,73 @@ describe Admin::ServicePackagesController do
     end
   end
 
+  #-------------------------------------------------------------------
+
+  describe "POST add service"  do
+
+    it "puts the given service in the given package" do
+      sp = ServicePackage.make!
+      ms = MobileService.make!
+      
+      xhr :post, :add_service, :id => sp.id, :service_id => ms.id
+
+      response.should be_success
+      sp.mobile_services.reload
+      sp.mobile_services[0].should == ms
+    end
+    
+    context "when the service is already in the package" do
+      it "does nothing" do
+        sp = ServicePackage.make!(:with_2_services)
+        ms1 = sp.mobile_services[0]
+        ms2 = sp.mobile_services[1]
+
+        xhr :post, :add_service, :id => sp.id, :service_id => ms1.id
+
+        response.should be_success
+        sp.mobile_services.reload
+        sp.mobile_services.length.should == 2
+        sp.mobile_services[0].should be(ms1)
+        sp.mobile_services[1].should be(ms2)
+      end
+    end
+    
+  end
+
+  describe "POST remove service" do
+
+    it "removes the given service from the given package" do
+        sp = ServicePackage.make!(:with_2_services)
+        ms1 = sp.mobile_services[0]
+        ms2 = sp.mobile_services[1]
+
+        xhr :post, :remove_service, :id => sp.id, :service_id => ms1.id
+    
+        response.should be_success # NOTE: this passes even when the remove action is undefined....?
+        
+        #sp = ServicePackage.find_by_id(sp.id)
+        sp.mobile_services.reload
+        
+        sp.mobile_services.length.should == 1
+        sp.mobile_services[0].should ==(ms2)
+    end
+
+    context "when the service is not in the package" , :focus => true do
+      it "does nothing" do
+        sp = ServicePackage.make!(:with_2_services)
+        ms1 = sp.mobile_services[0]
+        ms2 = sp.mobile_services[1]
+        ms3 = MobileService.make!
+        
+        xhr :post, :remove_service, :id => sp.id, :service_id => ms3.id
+        
+        response.should be_success
+        sp.mobile_services.reload
+        sp.mobile_services.length.should == 2
+        sp.mobile_services[0].should ==(ms1)
+        sp.mobile_services[1].should ==(ms2)
+      end
+    end
+  end
+
 end
