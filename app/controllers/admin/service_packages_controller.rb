@@ -100,7 +100,7 @@ class Admin::ServicePackagesController < Admin::AdminController
     sp = ServicePackage.find(params[:id])
     
     # do nothing if the service is already in this package
-    if (sp.mobile_service_ids.include?(params[:service_id]))
+    if (sp.mobile_service_ids.include?(params[:service_id].to_i))
       respond_to do |format|
         format.js { render :nothing => true }
       end
@@ -109,7 +109,7 @@ class Admin::ServicePackagesController < Admin::AdminController
 
     sp.mobile_services << MobileService.find(params[:service_id])
 
-    #sp.save
+    sp.save
 
     respond_to do |format|
       format.js { render :nothing => true }
@@ -123,7 +123,7 @@ class Admin::ServicePackagesController < Admin::AdminController
     sp = ServicePackage.find(params[:id])
     
     # do nothing if the service is already in this package
-    if (! (sp.mobile_service_ids.include?(params[:service_id])))
+    if (! (sp.mobile_service_ids.include?(params[:service_id].to_i)))
       respond_to do |format|
         format.js { render :nothing => true }
       end
@@ -132,7 +132,7 @@ class Admin::ServicePackagesController < Admin::AdminController
 
     sp.mobile_services.delete(MobileService.find(params[:service_id]))
 
-    #p.save
+    sp.save
     
     respond_to do |format|
       format.js { render :nothing => true }

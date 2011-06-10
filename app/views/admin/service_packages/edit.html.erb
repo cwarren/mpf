@@ -6,23 +6,58 @@ $(document).ready(function(){
 
   var no_service_item = "<li>No services</li>";
 
-  $(".add_service_button").click(function(){
-    $(".services_in_package ul li:contains('No services')").remove();
-    $(".services_in_package ul").append($(this).parent().detach());
-    $(this).parent().find(".button").toggle();
-    if ($(".available_services ul li").length == 0) { 
-      $(".available_services ul").append(no_service_item);
-    }
-  });
+  $(".add_service_button").click(
+    function()
+      {
+        var cached_this = this;
+        $.ajax(
+          {
+            url: '<%=admin_service_package_path(@service_package) %>/add_service/'+($(this).parent().attr("for")),
+            type: 'POST',
+            success:function(data, textStatus) 
+              {
+                //alert('success!');
+                $(".services_in_package ul li:contains('No services')").remove();
+                $(".services_in_package ul").append($(cached_this).parent().detach());
+                $(cached_this).parent().find(".button").toggle();
+                if ($(".available_services ul li").length == 0) { 
+                  $(".available_services ul").append(no_service_item);
+                }          
+              },
+            error:function(request, textStatus, errorThrown)
+              {
+                alert("could not put that service in this package: "+errorThrown);
+              }
+          });
+      });
 
-  $(".remove_service_button").click(function(){
-    $(".available_services ul li:contains('No services')").remove();
-    $(".available_services ul").append($(this).parent().detach());
-    $(this).parent().find(".button").toggle();
-    if ($(".services_in_package ul li").length == 0) { 
-      $(".services_in_package ul").append(no_service_item);
-    }
-  });
+
+  $(".remove_service_button").click(
+    function()
+      {
+        var cached_this = this;
+        var ajaxurl = '<%=admin_service_package_path(@service_package) %>/remove_service/'+($(this).parent().attr("for")); 
+        //alert("ajaxurl is "+ajaxurl);
+        $.ajax(
+          {
+            url: ajaxurl, 
+            type: 'POST',
+            success:function(data, textStatus) 
+              {
+                //alert('success!');
+                $(".available_services ul li:contains('No services')").remove();
+                $(".available_services ul").append($(cached_this).parent().detach());
+                $(cached_this).parent().find(".button").toggle();
+                if ($(".services_in_package ul li").length == 0) { 
+                  $(".services_in_package ul").append(no_service_item);
+                }
+              },
+            error:function(request, textStatus, errorThrown)
+              {
+                alert("could not remove that service from this package: "+request.toString());
+              }
+          });
+      });
 
 });
 </script>
