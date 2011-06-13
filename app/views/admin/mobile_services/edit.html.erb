@@ -1,10 +1,27 @@
 <h1>Editing mobile_service</h1>
 
+<div class="left_col service_info">
 <%= form_for(@mobile_service,
              :html => { :multipart => true },
              :url => admin_mobile_service_path(@mobile_service) ) do |f| %>
 <%= render 'form_contents', :f => f %>
 <% end %>
+</div>
+
+<div class="right_col">
+  <div class="package_lister">
+    <ul class="package_list">
+<%if @mobile_service.service_packages.empty?%>
+      <li>This service is not in any packages.</li>
+<%else%>
+  <%@mobile_service.service_packages.each do |sp|%>
+      <%=admin_service_package_item(sp)%>
+  <%end%>
+<%end%>
+  </div>
+</div>
+
+<br clear="all"/>
 
 <%= link_to 'Show', admin_mobile_service_path(@mobile_service) %> |
 <%= link_to 'Back', admin_mobile_services_path %>

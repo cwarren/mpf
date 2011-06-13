@@ -4,6 +4,20 @@ TODO
   + link to edit for each package
   + option to remove from all packages
 
+- implement list of all packages for/in a mobile device context
+  + dark purple bg
+  + display box inset from browser edge
+  + grid (floated list) of package items (icon & title)
+
+- implement showing a package for/in a mobile device context
+  + browser based - package info at head, service icons and titles listed
+
+- implement showing a servince in a package for/in a mobile device context
+
+- implement list of all services for/in a mobile device context
+
+- implement showing a service NOT in a package for/in a mobile device context
+
 - enhance service-package relationship to add an ordering field
   + make fetches of services for a package be in that order
   + add ordering capability to the UI

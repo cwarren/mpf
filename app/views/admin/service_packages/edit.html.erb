@@ -1,12 +1,12 @@
 <script type="text/javascript">
 $(document).ready(function(){
 
-  $(".services_in_package  .add_service_button").hide();
-  $(".available_services  .remove_service_button").hide();
+  $(".services_in_package  .add_button").hide();
+  $(".available_services  .remove_button").hide();
 
   var no_service_item = "<li>No services</li>";
 
-  $(".add_service_button").click(
+  $(".add_button").click(
     function()
       {
         var cached_this = this;
@@ -31,7 +31,7 @@ $(document).ready(function(){
       });
 
 
-  $(".remove_service_button").click(
+  $(".remove_button").click(
     function()
       {
         var cached_this = this;
@@ -76,7 +76,7 @@ $(document).ready(function(){
         <li>No services</li>
     <%else%>
       <% @service_package.mobile_services.each do |ms| %>
-        <%=admin_mobile_service_item(ms,add_ms_button,remove_ms_button)%>
+        <%=admin_mobile_service_item(ms,add_button,remove_button)%>
       <%end%>
     <%end%>
       </ul>
@@ -89,7 +89,7 @@ $(document).ready(function(){
     <%else%>
       <ul>
         <% (@mobile_services - @service_package.mobile_services).each do |ms| %>
-          <%=admin_mobile_service_item(ms,add_ms_button,remove_ms_button)%>
+          <%=admin_mobile_service_item(ms,add_button,remove_button)%>
         <%end%>
       </ul>
     <%end%>

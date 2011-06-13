@@ -187,8 +187,8 @@ describe Admin::ServicePackagesController do
         response.should be_success
         sp.mobile_services.reload
         sp.mobile_services.length.should == 2
-        sp.mobile_services[0].should be(ms1)
-        sp.mobile_services[1].should be(ms2)
+        sp.mobile_services[0].should ==(ms1)
+        sp.mobile_services[1].should ==(ms2)
       end
     end
     
@@ -212,12 +212,14 @@ describe Admin::ServicePackagesController do
         sp.mobile_services[0].should ==(ms2)
     end
 
-    context "when the service is not in the package" , :focus => true do
+    context "when the service is not in the package"  do
       it "does nothing" do
-        sp = ServicePackage.make!(:with_2_services)
+        sp = ServicePackage.make(:with_2_services)
+        sp.save
         ms1 = sp.mobile_services[0]
         ms2 = sp.mobile_services[1]
-        ms3 = MobileService.make!
+        ms3 = MobileService.make
+        ms3.save
         
         xhr :post, :remove_service, :id => sp.id, :service_id => ms3.id
         

@@ -26,6 +26,32 @@ h1 {clear: both;}
   float: right;
 }
 
+/*-----------------------------*/
+
+li.live {}
+li.not_live { background: #fdd; }
+li.restricted { border: 2px dashed #22b; }
+li.not_restricted {}
+
+.add_button {
+  color: #373;
+  border: 2px solid #373;
+  background: #9d9;
+  float: left;
+  margin-right: 2px;
+}
+
+.remove_button {
+  color: #733;
+  border: 2px solid #733;
+  background: #d99;
+  float: right;
+  margin-left: 2px;
+}
+
+/*-----------------------------*/
+/* package editing */
+
 .mobile_service_chooser {
   border: 1px solid #000;
   padding: 2px;
@@ -54,11 +80,6 @@ h1 {clear: both;}
   padding: 2px;
 }
 
-li.live {}
-li.not_live { background: #fdd; }
-li.restricted { border: 2px dashed #22b; }
-li.not_restricted {}
-
 .add_service_button,
 .remove_service_button {
   width: 28px;
@@ -68,18 +89,21 @@ li.not_restricted {}
   vertical-align: text-bottom;
 }
 
-.add_service_button {
-  color: #373;
-  border: 2px solid #373;
-  background: #9d9;
-  float: left;
-  margin-right: 2px;
+/*-----------------------------*/
+/* service editing */
+
+.package_lister {
+  border: 1px solid #000;
+  padding: 2px;
 }
 
-.remove_service_button {
-  color: #733;
-  border: 2px solid #733;
-  background: #d99;
-  float: right;
-  margin-left: 2px;
+.package_lister ul.package_list {
+  padding: 0;
+}
+
+.package_lister ul.package_list li {
+  list-style: none;
+  border: 1px solid #22b;
+  margin: 2px;
+  padding: 2px;
 }
