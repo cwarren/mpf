@@ -16,7 +16,6 @@ $(document).ready(function(){
             type: 'POST',
             success:function(data, textStatus) 
               {
-                //alert('success!');
                 $(".services_in_package ul li:contains('No services')").remove();
                 $(".services_in_package ul").append($(cached_this).parent().detach());
                 $(cached_this).parent().find(".button").toggle();
@@ -36,15 +35,12 @@ $(document).ready(function(){
     function()
       {
         var cached_this = this;
-        var ajaxurl = '<%=admin_service_package_path(@service_package) %>/remove_service/'+($(this).parent().attr("for")); 
-        //alert("ajaxurl is "+ajaxurl);
         $.ajax(
           {
-            url: ajaxurl, 
+            url: '<%=admin_service_package_path(@service_package) %>/remove_service/'+($(this).parent().attr("for")), 
             type: 'POST',
             success:function(data, textStatus) 
               {
-                //alert('success!');
                 $(".available_services ul li:contains('No services')").remove();
                 $(".available_services ul").append($(cached_this).parent().detach());
                 $(cached_this).parent().find(".button").toggle();
