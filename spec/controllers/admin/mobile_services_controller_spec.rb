@@ -40,12 +40,23 @@ describe Admin::MobileServicesController do
     end
   end
 
-  describe "GET edit" do
+  describe "GET edit" , :focus => true do
     it "assigns the requested mobile_service as @mobile_service" do
-      MobileService.stub(:find).with("37") { mock_mobile_service }
-      get :edit, :id => "37"
-      assigns(:mobile_service).should be(mock_mobile_service)
+      ms = MobileService.make!
+      get :edit, :id => ms.id
+      assigns(:mobile_service).should == ms
+      assigns(:packages_not_in).should be_empty
     end
+    
+    it "assigns services packages that don't include this to @packages_not_in" do
+      ms = MobileService.make!(:with_2_packages)
+      p = [ServicePackage.make]
+      p[0].save
+      get :edit, :id => ms.id
+      assigns(:mobile_service).should == ms
+      assigns(:packages_not_in).should == p
+    end
+    
   end
 
   describe "POST create" do

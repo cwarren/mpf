@@ -28,10 +28,10 @@ h1 {clear: both;}
 
 /*-----------------------------*/
 
-li.live {}
-li.not_live { background: #fdd; }
-li.restricted { border: 2px dashed #22b; }
-li.not_restricted {}
+.live {}
+.not_live { background: #ff6; }
+.restricted { border: 2px dashed #22b; }
+.not_restricted {}
 
 .add_button {
   color: #373;
@@ -39,6 +39,8 @@ li.not_restricted {}
   background: #9d9;
   float: left;
   margin-right: 2px;
+  text-align: center;
+  font-weight: bold;
 }
 
 .remove_button {
@@ -47,6 +49,8 @@ li.not_restricted {}
   background: #d99;
   float: right;
   margin-left: 2px;
+  text-align: center;
+  font-weight: bold;
 }
 
 /*-----------------------------*/
@@ -78,8 +82,10 @@ li.not_restricted {}
   border: 1px solid #22b;
   margin: 2px;
   padding: 2px;
+  height: 62px;
 }
 
+/*
 .add_service_button,
 .remove_service_button {
   width: 28px;
@@ -88,7 +94,7 @@ li.not_restricted {}
   text-align: center;
   vertical-align: text-bottom;
 }
-
+*/
 /*-----------------------------*/
 /* service editing */
 
@@ -106,4 +112,29 @@ li.not_restricted {}
   border: 1px solid #22b;
   margin: 2px;
   padding: 2px;
+  height: 62px;
+}
+
+.button_container {
+  width: 48px;
+  height: 48px;
+  float: left;
+  margin-right: 4px;
+  padding: 3px;
+}
+
+.package_container {
+  float: left;
+  height: 64px;
+}
+.in_package {
+  margin-left: 3px;
+  border: 3px solid #2b2;
+  background: #aea;
+}
+
+.out_of_package  {
+  margin-left: 32px;
+  border: 3px solid #b22;
+  background: #eaa;
 }

@@ -10,14 +10,19 @@
 
 <div class="right_col">
   <div class="package_lister">
+    <h2>Package Membership</h2>
     <ul class="package_list">
 <%if @mobile_service.service_packages.empty?%>
       <li>This service is not in any packages.</li>
 <%else%>
   <%@mobile_service.service_packages.each do |sp|%>
-      <%=admin_service_package_item(sp)%>
+      <%=admin_service_package_item(sp,"<div class=\"button_container in_package\">"+remove_button("X")+"</div><div class=\"package_container\">","</div>")%>
   <%end%>
 <%end%>
+<%@packages_not_in.each do |sp|%>
+      <%=admin_service_package_item(sp,"<div class=\"button_container out_of_package\">"+add_button("+")+"</div><div class=\"package_container\">","</div>")%>
+<%end%>
+    </ul>
   </div>
 </div>
 

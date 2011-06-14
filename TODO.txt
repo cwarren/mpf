@@ -1,7 +1,6 @@
 TODO
 
-- on service package edit page, show packages that include this service
-  + link to edit for each package
+- on mobile service edit page, show packages that include this service
   + option to remove from all packages
 
 - implement list of all packages for/in a mobile device context

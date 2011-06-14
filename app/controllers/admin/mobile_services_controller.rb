@@ -44,6 +44,7 @@ class Admin::MobileServicesController < Admin::AdminController
   # GET /mobile_services/1/edit
   def edit
     @mobile_service = MobileService.find(params[:id])
+    @packages_not_in = ServicePackage.all - @mobile_service.service_packages
     @page_title = @@page_title_base+" : Edit "+@mobile_service.title
   end
 

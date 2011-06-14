@@ -76,7 +76,7 @@ $(document).ready(function(){
         <li>No services</li>
     <%else%>
       <% @service_package.mobile_services.each do |ms| %>
-        <%=admin_mobile_service_item(ms,add_button,remove_button)%>
+        <%=admin_mobile_service_item(ms,add_button+"<div class=\"package_container\">","</div>"+remove_button)%>
       <%end%>
     <%end%>
       </ul>
@@ -89,7 +89,7 @@ $(document).ready(function(){
     <%else%>
       <ul>
         <% (@mobile_services - @service_package.mobile_services).each do |ms| %>
-          <%=admin_mobile_service_item(ms,add_button,remove_button)%>
+          <%=admin_mobile_service_item(ms,add_button+"<div class=\"package_container\">","</div>"+remove_button)%>
         <%end%>
       </ul>
     <%end%>

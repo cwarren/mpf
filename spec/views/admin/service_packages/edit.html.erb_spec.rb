@@ -46,7 +46,6 @@ describe "admin/service_packages/edit.html.erb" do
     end
     
     it "indicates that no services are currently in this package" do
-
       rendered.should have_selector("div.mobile_service_chooser div.services_in_package ul li", :count => 1) do |m|
         m.should contain(/no services/i)
       end
@@ -59,9 +58,7 @@ describe "admin/service_packages/edit.html.erb" do
         m.should have_selector("li#ms_"+@mobile_services[2].id.to_s)
       end
     end
-    
-    it "allows services to be added to the package"
-  
+      
   end
   
   context "when the package has 2 services of 3 available" do
@@ -88,8 +85,6 @@ describe "admin/service_packages/edit.html.erb" do
       end
     end
     
-    it "allows services to be removed from the package"
-
     context "when one of the services in the package is not live" do
       it "indicates that the service is not live" do
         pending "distinction between not-live and disabled"
