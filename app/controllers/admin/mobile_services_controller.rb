@@ -91,4 +91,53 @@ class Admin::MobileServicesController < Admin::AdminController
       format.xml  { head :ok }
     end
   end
+  
+  #-------------------------------------------------------------
+  
+  # POST /mobile_services/1/add_to_package/2
+  def add_package
+    ms = MobileService.find(params[:id])
+    
+    # do nothing if the service is already in this package
+    if (ms.service_package_ids.include?(params[:package_id].to_i))
+      respond_to do |format|
+        format.js { render :nothing => true }
+      end
+      return
+    end
+
+    ms.service_packages << ServicePackage.find(params[:package_id])
+
+    ms.save
+
+    respond_to do |format|
+      format.js { render :nothing => true }
+    end
+
+  end
+  
+  
+  # POST /mobile_services/1/remove_from_package/2
+  def remove_package
+    ms = MobileService.find(params[:id])
+
+    
+    # do nothing if the service is already in this package
+    if (! (ms.service_package_ids.include?(params[:package_id].to_i)))
+      respond_to do |format|
+        format.js { render :nothing => true }
+      end
+      return
+    end
+
+    ms.service_packages.delete(ServicePackage.find(params[:package_id]))
+
+    ms.save
+    
+    respond_to do |format|
+      format.js { render :nothing => true }
+    end
+
+  end
+    
 end

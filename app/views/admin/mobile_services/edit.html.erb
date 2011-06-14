@@ -11,12 +11,23 @@ $(document).ready(function(){
       {
         var cached_this = this;
         //alert("add");
-        
-        $(".package_lister ul li:contains('This service is not in any packages.')").remove();
-        $(cached_this).parent().find(".button").toggle();
-        $(cached_this).parent().removeClass("out_of_package");
-        $(cached_this).parent().addClass("in_package");
 
+        $.ajax(
+          {
+            url: '<%=admin_mobile_service_path(@mobile_service) %>/add_to_package/'+($(this).parent().parent().attr("for")),
+            type: 'POST',
+            success:function(data, textStatus) 
+              {
+                $(".package_lister ul li:contains('This service is not in any packages.')").remove();
+                $(cached_this).parent().find(".button").toggle();
+                $(cached_this).parent().removeClass("out_of_package");
+                $(cached_this).parent().addClass("in_package");
+              },
+            error:function(request, textStatus, errorThrown)
+              {
+                alert("could not put this service in that package: "+errorThrown);
+              }
+          });
       });
 
   $(".remove_button").click(
@@ -25,13 +36,24 @@ $(document).ready(function(){
         var cached_this = this;
         //alert("remove");
 
-        $(cached_this).parent().find(".button").toggle();
-        $(cached_this).parent().removeClass("in_package");
-        $(cached_this).parent().addClass("out_of_package");
-        if ($(".package_lister ul li .in_package").length == 0) { 
-          $(".package_lister ul").prepend(no_package_item);
-        }          
-
+        $.ajax(
+          {
+            url: '<%=admin_mobile_service_path(@mobile_service) %>/remove_from_package/'+($(this).parent().parent().attr("for")),
+            type: 'POST',
+            success:function(data, textStatus) 
+              {
+                $(cached_this).parent().find(".button").toggle();
+                $(cached_this).parent().removeClass("in_package");
+                $(cached_this).parent().addClass("out_of_package");
+                if ($(".package_lister ul li .in_package").length == 0) { 
+                  $(".package_lister ul").prepend(no_package_item);
+                }          
+              },
+            error:function(request, textStatus, errorThrown)
+              {
+                alert("could not remove this service from that package: "+errorThrown);
+              }
+          });
       });
       
 });

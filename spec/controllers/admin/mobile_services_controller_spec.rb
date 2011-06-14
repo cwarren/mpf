@@ -40,7 +40,7 @@ describe Admin::MobileServicesController do
     end
   end
 
-  describe "GET edit" , :focus => true do
+  describe "GET edit" do
     it "assigns the requested mobile_service as @mobile_service" do
       ms = MobileService.make!
       get :edit, :id => ms.id
@@ -137,6 +137,79 @@ describe Admin::MobileServicesController do
       delete :destroy, :id => "1"
       response.should redirect_to(admin_mobile_services_url)
     end
+  end
+  
+  
+  #-------------------------------------------------------------------
+
+  describe "POST add service" ,:focus => true do
+    it "adds the given package to the given service" do
+      ms = MobileService.make!
+      sp = ServicePackage.make!
+      
+      xhr :post, :add_package, :id => ms.id, :package_id => sp.id
+
+      response.should be_success
+      ms.service_packages.reload
+      ms.service_packages[0].should == sp
+    end
+    
+    context "when the package is already in the service" do
+      it "does nothing" do
+        ms = MobileService.make!(:with_2_packages)
+        sp1 = ms.service_packages[0]
+        sp2 = ms.service_packages[1]
+
+        xhr :post, :add_package, :id => ms.id, :package_id => sp1.id
+
+        response.should be_success
+        ms.service_packages.reload
+        ms.service_packages.length.should == 2
+        ms.service_packages[0].should ==(sp1)
+        ms.service_packages[1].should ==(sp2)
+      end
+    end
+
+  end
+  
+
+  describe "POST remove service" ,:focus => true do
+    it "removes the given package from the given service" do
+      ms = MobileService.make!(:with_2_packages)
+      sp1 = ms.service_packages[0]
+      sp2 = ms.service_packages[1]
+
+      xhr :post, :remove_package, :id => ms.id, :package_id => sp1.id
+
+      response.should be_success # NOTE: this passes even when the remove action is undefined....?
+
+      ms.service_packages.reload
+
+      ms.service_packages.length.should == 1
+      ms.service_packages[0].should ==(sp2)
+    end
+
+    context "when the package is not in the service" do
+      it "does nothing" do
+        ms = MobileService.make(:with_2_packages)
+        sp = ServicePackage.make(:with_2_services)
+        ms.save
+        sp1 = ms.service_packages[0]
+        sp2 = ms.service_packages[1]
+        sp3 = ServicePackage.make
+        sp3.save
+        
+        xhr :post, :remove_package, :id => ms.id, :package_id => sp3.id
+        
+        response.should be_success
+
+        ms.service_packages.reload
+        ms.service_packages.length.should == 2
+        ms.service_packages[0].should ==(sp1)
+        ms.service_packages[1].should ==(sp2)
+      end
+    end
+
   end
 
 end

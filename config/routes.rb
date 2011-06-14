@@ -10,12 +10,17 @@ Mpf::Application.routes.draw do
     get "pages/home"
     get "pages/about"
     get "pages/help"
+
     resources :mobile_services
+    match "/mobile_services/:id/add_to_package/:package_id" => "mobile_services#add_package",       :as => :add_package_to_service,      :via => :post, :id => /\d+/, :package_id => /\d+/
+    match "/mobile_services/:id/remove_from_package/:package_id" => "mobile_services#remove_package", :as => :remove_package_from_service, :via => :post, :id => /\d+/, :package_id => /\d+/
+
     resources :service_packages 
-    resources :users
-    root :to => 'pages#home'
     match "/service_packages/:id/add_service/:service_id" => "service_packages#add_service",       :as => :add_service_to_package,      :via => :post, :id => /\d+/, :service_id => /\d+/
     match "/service_packages/:id/remove_service/:service_id" => "service_packages#remove_service", :as => :remove_service_from_package, :via => :post, :id => /\d+/, :service_id => /\d+/
+
+    resources :users
+    root :to => 'pages#home'
   end
 
   # The priority is based upon order of creation:

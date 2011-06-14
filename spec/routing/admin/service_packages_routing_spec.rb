@@ -31,5 +31,13 @@ describe Admin::ServicePackagesController do
       { :delete => "/admin/service_packages/1" }.should route_to(:controller => "admin/service_packages", :action => "destroy", :id => "1")
     end
 
+    it "recognizes and generates #add_service" do
+      { :post => "/admin/service_packages/1/add_service/2" }.should route_to(:controller => "admin/service_packages", :action => "add_service", :id => "1", :service_id => "2")
+    end
+
+    it "recognizes and generates #remove_service" do
+      { :post => "/admin/service_packages/1/remove_service/2" }.should route_to(:controller => "admin/service_packages", :action => "remove_service", :id => "1", :service_id => "2")
+    end
+
   end
 end

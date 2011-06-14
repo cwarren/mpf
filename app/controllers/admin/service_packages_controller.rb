@@ -95,7 +95,7 @@ class Admin::ServicePackagesController < Admin::AdminController
   
   #-------------------------------------------------------------
   
-  # POST /service_packages/1/add/2
+  # POST /service_packages/1/add_service/2
   def add_service
     sp = ServicePackage.find(params[:id])
     
@@ -118,7 +118,7 @@ class Admin::ServicePackagesController < Admin::AdminController
   end
   
   
-  # POST /service_packages/1/remove/2
+  # POST /service_packages/1/remove_service/2
   def remove_service
     sp = ServicePackage.find(params[:id])
     

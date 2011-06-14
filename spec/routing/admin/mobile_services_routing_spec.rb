@@ -31,5 +31,13 @@ describe Admin::MobileServicesController do
       { :delete => "/admin/mobile_services/1" }.should route_to(:controller => "admin/mobile_services", :action => "destroy", :id => "1")
     end
 
+    it "recognizes and generates #add_package" do
+      { :post => "/admin/mobile_services/1/add_to_package/2" }.should route_to(:controller => "admin/mobile_services", :action => "add_package", :id => "1", :package_id => "2")
+    end
+
+    it "recognizes and generates #remove_package" do
+      { :post => "/admin/mobile_services/1/remove_from_package/2" }.should route_to(:controller => "admin/mobile_services", :action => "remove_package", :id => "1", :package_id => "2")
+    end
+
   end
 end
