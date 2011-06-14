@@ -1,3 +1,42 @@
+<script type="text/javascript">
+$(document).ready(function(){
+
+  $(".in_package  .add_button").hide();
+  $(".out_of_package  .remove_button").hide();
+
+  var no_package_item = "<li>This service is not in any packages.</li>";
+
+  $(".add_button").click(
+    function()
+      {
+        var cached_this = this;
+        //alert("add");
+        
+        $(".package_lister ul li:contains('This service is not in any packages.')").remove();
+        $(cached_this).parent().find(".button").toggle();
+        $(cached_this).parent().removeClass("out_of_package");
+        $(cached_this).parent().addClass("in_package");
+
+      });
+
+  $(".remove_button").click(
+    function()
+      {
+        var cached_this = this;
+        //alert("remove");
+
+        $(cached_this).parent().find(".button").toggle();
+        $(cached_this).parent().removeClass("in_package");
+        $(cached_this).parent().addClass("out_of_package");
+        if ($(".package_lister ul li .in_package").length == 0) { 
+          $(".package_lister ul").prepend(no_package_item);
+        }          
+
+      });
+      
+});
+</script>
+
 <h1>Editing mobile_service</h1>
 
 <div class="left_col service_info">
@@ -16,11 +55,11 @@
       <li>This service is not in any packages.</li>
 <%else%>
   <%@mobile_service.service_packages.each do |sp|%>
-      <%=admin_service_package_item(sp,"<div class=\"button_container in_package\">"+remove_button("X")+"</div><div class=\"package_container\">","</div>")%>
+      <%=admin_service_package_item(sp,"<div class=\"button_container in_package\">"+add_button+remove_button+"</div><div class=\"package_container\">","</div>")%>
   <%end%>
 <%end%>
 <%@packages_not_in.each do |sp|%>
-      <%=admin_service_package_item(sp,"<div class=\"button_container out_of_package\">"+add_button("+")+"</div><div class=\"package_container\">","</div>")%>
+      <%=admin_service_package_item(sp,"<div class=\"button_container out_of_package\">"+add_button+remove_button+"</div><div class=\"package_container\">","</div>")%>
 <%end%>
     </ul>
   </div>
