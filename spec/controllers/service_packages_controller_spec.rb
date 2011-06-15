@@ -8,23 +8,27 @@ describe ServicePackagesController do
 
   #render_views
 
-  def mock_service_package(stubs={})
-    @mock_service_package ||= mock_model(ServicePackage, stubs).as_null_object
-  end
-
   describe "GET index" do
     it "assigns all service_packages as @service_packages" do
-      ServicePackage.stub(:all) { [mock_service_package] }
+      splist = ServicePackage.make!(2)
       get :index
-      assigns(:service_packages).should eq([mock_service_package])
+      assigns(:service_packages).should == splist
     end
   end
 
-  describe "GET show" do
+  describe "GET show by id" do
     it "assigns the requested service_package as @service_package" do
-      ServicePackage.stub(:find).with("37") { mock_service_package }
-      get :show, :id => "37"
-      assigns(:service_package).should be(mock_service_package)
+      sp = ServicePackage.make!
+      get :show, :id => sp.id.to_s
+      assigns(:service_package).should == sp
+    end
+  end
+
+  describe "GET show by urlname" do
+    it "assigns the requested service_package as @service_package" do
+      sp = ServicePackage.make!
+      get :show, :id => sp.urlname
+      assigns(:service_package).should == sp
     end
   end
 

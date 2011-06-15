@@ -14,8 +14,12 @@ class ServicePackagesController < ApplicationController
   # GET /service_packages/1
   # GET /service_packages/1.xml
   def show
-    @service_package = ServicePackage.find(params[:id])
-
+    if (params[:id].match /^\d+$/)
+      @service_package = ServicePackage.find(params[:id])
+    else
+      @service_package = ServicePackage.find_by_urlname(params[:id])
+    end
+    
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @service_package }
