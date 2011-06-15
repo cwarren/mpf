@@ -7,6 +7,8 @@ Mpf::Application.routes.draw do
   get "pages/about"
   get "pages/help"
   
+  root :to => 'service_packages#index'
+  
   namespace "admin" do
     get "pages/home"
     get "pages/about"
