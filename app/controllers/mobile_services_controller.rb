@@ -14,7 +14,12 @@ class MobileServicesController < ApplicationController
   # GET /mobile_services/1
   # GET /mobile_services/1.xml
   def show
-    @mobile_service = MobileService.find(params[:id])
+
+    if (params[:id].match /\A\d+\Z/)
+      @mobile_service = MobileService.find(params[:id])
+    else
+      @mobile_service = MobileService.find_by_urltitle(params[:id])
+    end
 
     respond_to do |format|
       format.html # show.html.erb

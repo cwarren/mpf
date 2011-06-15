@@ -3,7 +3,7 @@
 <table>
   <tr>
     <th>Title</th>
-    <th>Urlname</th>
+    <th>Url Title</th>
     <th>Description</th>
     <th>Icon</th>
     <th>Is live</th>
@@ -17,7 +17,7 @@
   <tr>
   
     <td><%= service_package.title %></td>
-    <td><%= service_package.urlname %></td>
+    <td><%= service_package.urltitle %></td>
     <td><%= service_package.description %></td>
     <td><% if service_package.icon.exists? then %>
       <%= image_tag service_package.icon.url(:base) %>

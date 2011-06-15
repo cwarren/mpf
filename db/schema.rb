@@ -10,38 +10,42 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110603191220) do
+ActiveRecord::Schema.define(:version => 20110615154811) do
 
   create_table "mobile_services", :force => true do |t|
     t.string   "title",             :default => "service default title"
+    t.string   "urltitle",          :default => "defurltitle"
     t.text     "description",       :default => "service default description"
+    t.string   "icon_file_name"
+    t.string   "icon_content_type"
+    t.integer  "icon_file_size"
+    t.datetime "icon_updated_at"
     t.string   "url",               :default => "",                            :null => false
     t.boolean  "is_live",           :default => false
     t.boolean  "is_restricted",     :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "icon_file_name"
-    t.string   "icon_content_type"
-    t.integer  "icon_file_size"
-    t.datetime "icon_updated_at"
   end
 
-  create_table "package_memberships", :id => false, :force => true do |t|
-    t.integer "mobile_service_id"
-    t.integer "service_package_id"
+  create_table "package_memberships", :force => true do |t|
+    t.integer  "mobile_service_id"
+    t.integer  "service_package_id"
+    t.integer  "ordering"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "service_packages", :force => true do |t|
     t.string   "title",             :default => "package default title"
-    t.string   "urlname",           :default => "defurlname"
+    t.string   "urltitle",          :default => "defurltitle"
     t.text     "description",       :default => "package default description"
-    t.boolean  "is_live",           :default => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "icon_file_name"
     t.string   "icon_content_type"
     t.integer  "icon_file_size"
     t.datetime "icon_updated_at"
+    t.boolean  "is_live",           :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|

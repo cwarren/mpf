@@ -24,10 +24,10 @@ describe ServicePackagesController do
     end
   end
 
-  describe "GET show by urlname" do
+  describe "GET show by urltitle" do
     it "assigns the requested service_package as @service_package" do
       sp = ServicePackage.make!
-      get :show, :id => sp.urlname
+      get :show, :id => sp.urltitle
       assigns(:service_package).should == sp
     end
   end

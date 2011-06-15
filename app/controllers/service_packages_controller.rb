@@ -14,10 +14,10 @@ class ServicePackagesController < ApplicationController
   # GET /service_packages/1
   # GET /service_packages/1.xml
   def show
-    if (params[:id].match /^\d+$/)
+    if (params[:id].match /\A\d+\Z/)
       @service_package = ServicePackage.find(params[:id])
     else
-      @service_package = ServicePackage.find_by_urlname(params[:id])
+      @service_package = ServicePackage.find_by_urltitle(params[:id])
     end
     
     respond_to do |format|

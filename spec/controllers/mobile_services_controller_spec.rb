@@ -8,23 +8,27 @@ describe MobileServicesController do
 
   #render_views
   
-  def mock_mobile_service(stubs={})
-    @mock_mobile_service ||= mock_model(MobileService, stubs).as_null_object
-  end
-
   describe "GET index" do
     it "assigns all mobile_services as @mobile_services" do
-      MobileService.stub(:all) { [mock_mobile_service] }
+      ms = MobileService.make!
       get :index
-      assigns(:mobile_services).should eq([mock_mobile_service])
+      assigns(:mobile_services).should == [ms]
     end
   end
 
-  describe "GET show" do
+  describe "GET show by id" do
     it "assigns the requested mobile_service as @mobile_service" do
-      MobileService.stub(:find).with("37") { mock_mobile_service }
-      get :show, :id => "37"
-      assigns(:mobile_service).should be(mock_mobile_service)
+      ms = MobileService.make!
+      get :show, :id => ms.id.to_s
+      assigns(:mobile_service).should == ms
+    end
+  end
+
+  describe "GET show by urltitle" do
+    it "assigns the requested mobile_service as @mobile_service" do
+      ms = MobileService.make!
+      get :show, :id => ms.urltitle
+      assigns(:mobile_service).should == ms
     end
   end
 

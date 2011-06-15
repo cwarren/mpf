@@ -1,22 +1,9 @@
 require 'spec_helper'
 
 describe ServicePackage do
-
-  before do
-    @sp_complete_in_db = ServicePackage.create!({
-                                                :title => "complete_sp_db",
-                                                :urlname => "sp_db",
-                                                :description => "a service package with all fields valid, though not necessarily meaningful",
-                                                :icon=> File.new(Rails.root + 'spec/fixtures/images/sample_icon_57_57.png'),
-                                                :is_live=>true})
-  end
   
   before :each do
-    @sp_complete = ServicePackage.new(title:"complete_sp",
-                                      urlname:"sp",
-                                      description:"a service package with all fields valid, though not necessarily meaningful",
-                                      :icon=> File.new(Rails.root + 'spec/fixtures/images/sample_icon_57_57.png'),
-                                      is_live:true)
+    @sp_complete = ServicePackage.make!
   end
 
   it "should be invalid with no title" do
@@ -33,7 +20,9 @@ describe ServicePackage do
 
   it "should be invalid with a non-unique title" do
     @sp_complete.should be_valid
-    @sp_complete.title = "complete_sp_db"
+    sp2 = ServicePackage.make
+    sp2.save
+    @sp_complete.title = sp2.title
     @sp_complete.should_not be_valid
   end
   

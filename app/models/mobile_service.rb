@@ -5,6 +5,11 @@ class MobileService < ActiveRecord::Base
                     :uniqueness => true, 
                     :format => { :with => /[A-Za-z0-9\-\'\"\+\.\!\?\@\$\#\%\&\=\,\: ]+/ }
 
+  validates :urltitle,  :presence => true,
+                        :length => { :minimum => 1, :maximum => 16 }, 
+                        :uniqueness => true,
+                        :format => { :with => /[A-Za-z0-9\-\_]+/ }
+
   validates :description, :presence => true,
                           :length => { :minimum => 0 }
 
@@ -13,9 +18,10 @@ class MobileService < ActiveRecord::Base
   validates :url,   :presence => true,
                     :length => { :minimum => 1 }, 
                     :uniqueness => true
-
-  has_and_belongs_to_many :service_packages, :join_table => "package_memberships"
   
+  has_many :package_memberships
+  has_many :service_packages, :through => :package_memberships
+
   has_attached_file :icon,
     :path => ":rails_root/public/data/:attachment_:class/:id/:style_:basename.:extension",
     :url => "/data/:attachment_:class/:id/:style_:basename.:extension",

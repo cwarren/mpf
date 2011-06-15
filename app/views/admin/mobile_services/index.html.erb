@@ -3,6 +3,7 @@
 <table>
   <tr>
     <th>Title</th>
+    <th>URL Title</th>
     <th>Description</th>
     <th>Icon</th>
     <th>Url</th>
@@ -16,6 +17,7 @@
 <% @mobile_services.each do |mobile_service| %>
   <tr>
     <td><%= mobile_service.title %></td>
+    <td><%= mobile_service.urltitle %></td>    
     <td><%= mobile_service.description %></td>
     <td><% if mobile_service.icon.exists? then %>
       <%= image_tag mobile_service.icon.url(:base) %>

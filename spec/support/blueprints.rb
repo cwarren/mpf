@@ -11,6 +11,7 @@ require 'machinist/active_record'
 MobileService.blueprint do
   id            { "#{sn}".to_i }
   title         { "Service #{sn}" }
+  urltitle      { "service#{sn}" }  
   description   { "a generic un-associated mobile service" }
   icon          { File.new(Rails.root + 'spec/fixtures/images/sample_icon_57_57.png') }
   url           { "http://foo#{sn}" }
@@ -22,6 +23,7 @@ end
 MobileService.blueprint(:public) do
   id            { "#{sn}".to_i }
   title         { "Service #{sn}" }
+  urltitle      { "service#{sn}" }  
   description   { "a generic un-associated mobile service" }
   icon          { File.new(Rails.root + 'spec/fixtures/images/sample_icon_57_57.png') }
   url           { "http://foo#{sn}" }
@@ -33,6 +35,7 @@ end
 MobileService.blueprint(:available) do
   id            { "#{sn}".to_i }
   title         { "Service #{sn}" }
+  urltitle      { "service#{sn}" }  
   description   { "a generic un-associated mobile service" }
   icon          { File.new(Rails.root + 'spec/fixtures/images/sample_icon_57_57.png') }
   url           { "http://foo#{sn}" }
@@ -44,6 +47,7 @@ end
 MobileService.blueprint(:unavailable) do
   id            { "#{sn}".to_i }
   title         { "Service #{sn}" }
+  urltitle      { "service#{sn}" }  
   description   { "a generic un-associated mobile service" }
   icon          { File.new(Rails.root + 'spec/fixtures/images/sample_icon_57_57.png') }
   url           { "http://foo#{sn}" }
@@ -55,6 +59,7 @@ end
 MobileService.blueprint(:with_2_packages) do
   id            { "#{sn}".to_i }
   title         { "Service #{sn}" }
+  urltitle      { "service#{sn}" }  
   description   { "a generic un-associated mobile service" }
   icon          { File.new(Rails.root + 'spec/fixtures/images/sample_icon_57_57.png') }
   url           { "http://foo#{sn}" }
@@ -68,7 +73,7 @@ end
 ServicePackage.blueprint do
   id            { "#{sn}".to_i }
   title         { "Package #{sn}" }
-  urlname       { "package#{sn}" }
+  urltitle      { "package#{sn}" }
   icon          { File.new(Rails.root + 'spec/fixtures/images/sample_icon_57_57.png') }
   description   { "a generic empty service package" }
   is_live       { false }
@@ -78,7 +83,7 @@ end
 ServicePackage.blueprint(:with_2_services) do
   id            { "#{sn}".to_i }
   title         { "Package #{sn}" }
-  urlname       { "package#{sn}" }
+  urltitle      { "package#{sn}" }
   icon          { File.new(Rails.root + 'spec/fixtures/images/sample_icon_57_57.png') }
   description   { "a generic empty service package" }
   is_live       { true }
