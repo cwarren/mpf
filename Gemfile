@@ -11,6 +11,9 @@ gem 'paperclip', "~> 2.3"
 
 gem 'jquery-rails', '>= 1.0.3'
 
+gem 'omniauth', :git => "git://github.com/intridea/omniauth.git", :branch => "1.0-beta"
+
+
 #gem 'mysql2', '<= 0.3'
 
 # Use unicorn as the web server

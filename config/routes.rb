@@ -1,5 +1,10 @@
 Mpf::Application.routes.draw do
 
+  secure_protocol = "https://"
+  if (Rails.env.development? or Rails.env.test?)
+    secure_protocol = "http://"
+  end  
+
   resources :mobile_services, :only => [:index, :show]
   resources :service_packages, :only => [:index, :show]
 
@@ -9,6 +14,12 @@ Mpf::Application.routes.draw do
   
   root :to => 'service_packages#index'
   
+  # this is supposed to allow auth_ldap_url to be generated with https when needed... but it doesn't seem to be working
+  #match "/auth/ldap"=> redirect("/auth/ldap"), :as => "auth_ldap", :constraints => { :protocol => secure_protocol }
+  
+  match "/auth/ldap/callback" => "admin/user_sessions#create", :constraints => { :protocol => secure_protocol }
+  match "/auth/failure" => redirect("/admin/login"), :notice => "login failed"
+
   namespace "admin" do
     get "pages/home"
     get "pages/about"
@@ -23,63 +34,13 @@ Mpf::Application.routes.draw do
     match "service_packages/:id/remove_service/:service_id" => "service_packages#remove_service", :as => :remove_service_from_package, :via => :post, :id => /\d+/, :service_id => /\d+/
 
     resources :users
+
+    #resources :user_sessions, :only => [:new, :create, :destroy], :constraints => { :protocol => secure_protocol }
+    
+    match "login" => "user_sessions#new", :as => :login, :constraints => { :protocol => secure_protocol }
+    match "logout" => "user_sessions#destroy", :as => :logout
+
     root :to => 'pages#home'
   end
 
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
-
-  # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
-
-  # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
-  # This route can be invoked with purchase_url(:id => product.id)
-
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Sample resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Sample resource route with more complex sub-resources
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', :on => :collection
-  #     end
-  #   end
-
-  # Sample resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
-
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-  # root :to => "welcome#index"
-
-  # See how all your routes lay out with "rake routes"
-
-  # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id(.:format)))'
 end

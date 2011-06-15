@@ -21,7 +21,7 @@ class Admin::UsersController < Admin::AdminController
   # GET /users/1.xml
   def show
     @user = User.find(params[:id])
-    @page_title = @@page_title_base+" : "+@user.title
+    @page_title = @@page_title_base+" : "+@user.first_name+" "+@user.last_name
 
     respond_to do |format|
       format.html # show.html.erb
@@ -44,7 +44,7 @@ class Admin::UsersController < Admin::AdminController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
-    @page_title = @@page_title_base+" : Edit "+@user.title
+    @page_title = @@page_title_base+" : Edit "+@user.first_name+" "+@user.last_name
   end
 
   # POST /users

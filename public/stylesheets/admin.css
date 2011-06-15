@@ -16,6 +16,10 @@ h1 {clear: both;}
   text-align: center;
 }
 
+.admin_nav ul li.logout_item {
+  background: #fdd;
+}
+
 .left_col {
   width: 48%;
   float: left;
@@ -24,6 +28,32 @@ h1 {clear: both;}
 .right_col {
   width: 48%;
   float: right;
+}
+
+/*-----------------------------*/
+
+.login_box {
+  width: 300px;
+  margin: auto;
+  text-align: center;
+  border: 1px solid black;
+  padding: 9px;
+}
+
+.login_box .form_item {
+  width: 290px;
+  height: 30px;
+  margin-top: 3px;
+  margin-bottom: 9px;
+}
+
+.login_box .form_label {
+  width: 100px;
+  float: left;
+}
+.login_box .form_input {
+  width: 160px;
+  float: left;
 }
 
 /*-----------------------------*/

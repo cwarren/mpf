@@ -1,0 +1,19 @@
+
+
+<%= form_tag "/auth/ldap",:method => "post" do %>
+<div class="login_box">
+  <h1>MPF Login</h1>
+  <div class="form_item">
+    <div class="form_label"><label for='username'>Username:</label></div>
+    <div class="form_input"><input type='text' id='username' name='username'/></div>
+  </div>
+  
+  <div class="form_item">
+    <div class="form_label"><label for='password'>Password:</label></div>
+    <div class="form_input"><input type='password' id='password' name='password'/></div>
+  </div>
+
+  <%= submit_tag 'Sign in', :disable_with => 'Signing in...'%>
+</div>
+<% end %>
+
