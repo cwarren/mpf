@@ -92,3 +92,9 @@ end
 
 #-------------------------------------------------------------------------
 
+User.blueprint do
+  id            { "#{sn}".to_i }
+  username      {"user#{sn}"}
+  first_name    {"Firstname#{sn}"}
+  last_name     {"Lastname#{sn}"}
+end

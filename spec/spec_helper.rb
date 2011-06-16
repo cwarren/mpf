@@ -41,3 +41,13 @@ RSpec.configure do |config|
   end
 
 end
+
+def logged_in
+  @current_user = User.make!
+  session[:user_id] = @current_user.id
+end
+
+def logged_out
+  @current_user = nil
+  session[:user_id] = nil
+end

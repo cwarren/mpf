@@ -16,12 +16,24 @@ describe Admin::MobileServicesController do
     @mock_mobile_service ||= mock_model(MobileService, stubs).as_null_object
   end
 
-  describe "GET index" do
-    it "assigns all mobile_services as @mobile_services" do
-      MobileService.stub(:all) { [mock_mobile_service] }
+  before(:each) do    
+    # set up for logged in user
+    logged_in  
+  end
+
+  describe "GET index", :focus => true do
+    it "assigns all mobile_services as @mobile_services if logged in" do
+      mslist = MobileService.make!(2)      
       get :index
-      assigns(:mobile_services).should eq([mock_mobile_service])
+      assigns(:mobile_services).should == mslist
     end
+
+    it "redirects to the log in screen if not logged in" do
+      logged_out
+      get :index
+      response.should redirect_to(admin_login_path)
+    end
+
   end
 
   describe "GET show" do
@@ -142,7 +154,7 @@ describe Admin::MobileServicesController do
   
   #-------------------------------------------------------------------
 
-  describe "POST add service" ,:focus => true do
+  describe "POST add service" do
     it "adds the given package to the given service" do
       ms = MobileService.make!
       sp = ServicePackage.make!
@@ -173,7 +185,7 @@ describe Admin::MobileServicesController do
   end
   
 
-  describe "POST remove service" ,:focus => true do
+  describe "POST remove service" do
     it "removes the given package from the given service" do
       ms = MobileService.make!(:with_2_packages)
       sp1 = ms.service_packages[0]

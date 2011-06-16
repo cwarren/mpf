@@ -4,6 +4,11 @@ describe Admin::PagesController do
 
   render_views
 
+  before(:each) do    
+    # set up for logged in user
+    logged_in  
+  end
+
   describe "GET 'home'" do
     it "should be successful" do
       get 'home'

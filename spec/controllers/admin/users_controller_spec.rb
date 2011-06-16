@@ -3,6 +3,11 @@ require 'spec_helper'
 describe Admin::UsersController do
 
   #render_views
+  
+  before(:each) do    
+    # set up for logged in user
+    logged_in  
+  end
 
   def mock_user(stubs={})
     @mock_user ||= mock_model(User, stubs).as_null_object

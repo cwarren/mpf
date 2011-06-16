@@ -24,6 +24,11 @@ describe Admin::ServicePackagesController do
     @mock_mobile_service ||= mock_model(MobileService, stubs).as_null_object
   end
 
+  before(:each) do    
+    # set up for logged in user
+    logged_in  
+  end
+
   describe "GET index" do
     it "assigns all service_packages as @service_packages" do
       ServicePackage.stub(:all) { [mock_service_package] }
