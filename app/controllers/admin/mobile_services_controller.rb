@@ -1,6 +1,6 @@
 class Admin::MobileServicesController < Admin::AdminController
 
-  @@page_title_base = "Admin : Mobile Service"
+  @@page_title_base = "Admin : Service"
 
   def index
     @page_title = @@page_title_base+"s"
