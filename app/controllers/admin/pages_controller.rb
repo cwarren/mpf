@@ -1,6 +1,4 @@
-class Admin::PagesController < ApplicationController
-
-  layout "admin/application"
+class Admin::PagesController < Admin::AdminController
 
   @@page_title_base = "Admin"
 

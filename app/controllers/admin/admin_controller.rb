@@ -2,10 +2,9 @@ class Admin::AdminController < ApplicationController
 
   layout "admin/application"
 
-  # login disabled for testing
-  before_filter :require_login
   before_filter :get_server_name
   before_filter :define_service_types
+  before_filter :require_login
   
   def define_service_types
     @service_types = ["embedded","feed","remote","native iOS","native android"]
@@ -35,6 +34,9 @@ class Admin::AdminController < ApplicationController
   
   def get_server_name
     @servername = request.env["SERVER_NAME"]
+    if (@servername =~ /(127\.0\.0\.1|localhost)/)
+      @servername += ":3000"
+    end
   end
 
   
