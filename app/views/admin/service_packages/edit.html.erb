@@ -1,0 +1,180 @@
+<script type="text/javascript">
+$(document).ready(function(){
+
+
+  function stringSpect(o)
+  {
+    var res="";
+    for (var p in o) {
+      res += p+" = "+o[p]+"\n";
+    }
+    return res;
+  }
+
+  $(".services_in_package  .add_button").hide();
+  $(".available_services  .remove_button").hide();
+
+  $(".services_in_package ul li").hover(
+    function () {
+      $(this).addClass("item_hovering");
+    },
+    function () {
+      $(this).removeClass("item_hovering");
+    }
+  );
+  $(".available_services ul li").hover(
+    function () {
+      $(this).removeClass("item_not_hovering");
+      $(this).addClass("item_hovering");
+    },
+    function () {
+      $(this).removeClass("item_hovering");
+      $(this).addClass("item_not_hovering");
+    }
+  );
+
+
+  $(".services_in_package > ul").sortable({
+    update: function(event, ui) { 
+      var elt = $("#"+ui.item[0].id);
+      //alert("sortable update on "+elt.attr("for_item")+" in "+elt.attr("for_package"));
+      //alert("new list is "+stringSpect( $.map(elt.parent().children(),function(e,i){ return $("#"+e.id).attr("for_item"); }) ));
+      //alert("prev is "+elt.prev().attr("for_item"));
+      
+      elt.parent().children().each( function(idx,e) {
+        ejq = $("#"+e.id);
+
+        var save_url = '/admin/package_memberships/'+ejq.attr("as");
+        $.ajax(
+          {
+            url: save_url,
+            type: 'PUT',
+            data: {action: 'update',
+                   id: ejq.attr("as"),
+                   new_idx: idx},
+            success:function(data, textStatus) 
+              {
+                //alert("save successful");
+              },
+            error:function(request, textStatus, errorThrown)
+              {
+                //alert("could not save the new ordering: "+errorThrown);
+              }
+          });
+
+      } );
+      
+      
+    }
+  });
+
+  var no_service_item = "<li>No items</li>";
+
+  $(".add_button").click(
+    function()
+      {
+        var cached_this = this;
+        $.ajax(
+          {
+            url: '<%=admin_package_memberships_path%>',
+            type: 'POST',
+            data: {action: 'create',
+                   item: $(cached_this).parent().attr("for_item"), 
+                   package: <%=@service_package.id.to_s%>,
+                   item_type: $(cached_this).parent().attr("item_type")},
+            success:function(data, textStatus) 
+              {
+                $(".services_in_package ul li:contains('No items')").remove();
+                $(".services_in_package ul").append($(cached_this).parent().detach());
+                $(cached_this).parent().find(".button").toggle();
+                $(cached_this).parent().attr("as",data);
+                if ($(".available_services ul li").length == 0) { 
+                  $(".available_services ul").append(no_service_item);
+                }          
+              },
+            error:function(request, textStatus, errorThrown)
+              {
+                alert("could not put that service in this package: "+errorThrown);
+              }
+          });
+      });
+
+
+  $(".remove_button").click(
+    function()
+      {
+        var cached_this = this;
+        $.ajax(
+          {
+            url: '/admin/package_memberships/'+$(cached_this).parent().attr("as"),
+            type: 'DELETE',
+            data: {action: 'destroy',
+                   id: $(this).parent().attr("as")},
+            success:function(data, textStatus) 
+              {
+                $(cached_this).parent().attr("as","0");
+                $(".available_services ul li:contains('No items')").remove();
+                $(".available_services ul").append($(cached_this).parent().detach());
+                $(cached_this).parent().find(".button").toggle();
+                if ($(".services_in_package ul li").length == 0) { 
+                  $(".services_in_package ul").append(no_service_item);
+                }
+              },
+            error:function(request, textStatus, errorThrown)
+              {
+                alert("could not remove that service from this package: "+request.toString());
+              }
+          });
+      });
+
+});
+</script>
+
+<div class="left_col package_info">
+<%= form_for(@service_package,
+             :html => { :multipart => true },
+             :url => admin_service_package_path(@service_package) ) do |f| %>
+<%= render 'form_contents', :f => f %>
+<% end %>
+</div>
+
+<div class="right_col mobile_service_chooser">
+  <div class="left_col services_in_package">
+    <h2>Items In Package</h2>
+      <ul>
+    <%if @service_package.package_items.empty?%>
+        <li>No items</li>
+    <%else%>
+      <% @service_package.package_items.each do |pi| 
+        ms = pi.package_item %>
+        <%=admin_item(pi.package_item, @service_package, pi, ordering_handle+add_button+remove_button+"<div class=\"package_container\">".html_safe,"</div>".html_safe)%>
+      <%end%>
+    <%end%>
+      </ul>
+  </div>
+
+  <div class="right_col available_services">
+    <h2>Items Available</h2>
+    <%if @mobile_services.empty?%>
+      <p>No items</p>
+    <%else%>
+      <ul>
+        <% ((@mobile_services + @all_service_packages) - ([@service_package]) - (@service_package.package_items.collect {|pi| pi.package_item })).each do |ms| %>
+          <%=admin_item(ms, @service_package, nil, ordering_handle+add_button+remove_button+"<div class=\"package_container\">".html_safe,"</div>".html_safe)%>
+        <%end%>
+      </ul>
+    <%end%>
+  </div>
+
+</div>
+
+
+
+
+<br clear="all"/>
+
+<%= link_to 'Show', admin_service_package_path(@service_package) %> |
+<%= link_to 'All Packages', admin_service_packages_path %>
+
+<br clear="all"/>
+

@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+
+<div class="left_col">
+  <div class="field">
+    <label><b>Title:</b></label>
+    <div class="value"><%= @service_package.title %></div>
+  </div>
+  <div class="field">
+    <label><b>URL Title:</b></label>
+    <div class="value"><i>http://<%=@servername%>/</i><%= @service_package.urltitle %></div>
+  </div>
+  <div class="field">
+    <label><b>Icon:</b></label>
+    <div class="value"><% if @service_package.icon.exists? then %>
+      <%= image_tag @service_package.icon.url(:small) %>
+    <% else %>
+      NO ICON! (should never be seen!)
+    <% end %></div>
+  </div>
+  <div class="field">
+    <label><b>Description:</b></label>
+    <div class="value"><%= @service_package.description %></div>
+    <br/><br/>
+  </div>
+  <div class="field">
+    <label><b>Shows Description:</b></label>
+    <div class="value"><%= @service_package.flag_show_description %></div>
+  </div>
+  <div class="field">
+    <label><b>Display Style:</b></label>
+    <div class="value"><%= @service_package.display_style %></div>
+  </div>
+  <div class="field">
+    <label><b>Shows Root:</b></label>
+    <div class="value"><%= @service_package.flag_show_root_link %></div>
+  </div>
+  <div class="field">
+    <label><b>Restricted:</b></label>
+    <div class="value"><%= @service_package.is_restricted %></div>
+  </div>
+  <div class="field">
+    <label><b>Live:</b></label>
+    <div class="value"><%= @service_package.is_live %></div>
+  </div>
+</div>
+
+<div class="right_col">
+  <div class="mobile_service_list">
+   <b>Includes:</b>
+   <ul>
+   <% if (@service_package.package_items.empty?) %>
+    <li>None</li>
+   <% else %>
+       <% @service_package.package_items.each do |pm| %>
+          <%=admin_item(pm.package_item,@service_package,pm,"<div class=\"package_container\">","</div>")%>
+    <% end
+     end %>
+   </ul>
+  </div>
+</div>
+
+<br clear="all"/>
+<%= link_to 'Edit', edit_admin_service_package_path(@service_package) %> |
+<%= link_to 'All Packages', admin_service_packages_path %>

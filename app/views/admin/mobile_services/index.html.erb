@@ -1,3 +1,5 @@
+<h3><%= link_to 'Make a new Service', new_admin_mobile_service_path %></h3>
+
 <table  class="index_lister">
 
 <% @mobile_services.each do |mobile_service| 
@@ -7,21 +9,16 @@
   end
   %>
   <tr>
+    <td<%= ((mobile_service.is_live)?' title="live"':' class="not_live" title="not live"').html_safe%>><%= (mobile_service.is_live)?(image_tag "admin/live.png"):(image_tag "admin/not_live.png")%></td>
     <td><% if mobile_service.icon.exists? then %>
       <%= image_tag mobile_service.icon.url(:base) %>
     <% else %>
       NO ICON! (should never be seen!)
     <% end %></td>
     <td><%= mobile_service.title %></td>
-    <td<%= ((mobile_service.is_live)?' title="live"':' class="not_live" title="not live"').html_safe%>><%= (mobile_service.is_live)?(image_tag "admin/live.png"):(image_tag "admin/not_live.png")%></td>
-    <td<%= (mobile_service.is_restricted)?" class=restricted":"" %>><%= (mobile_service.is_restricted)?"Restricted":"Not Restricted" %></td>
-    <td class="first_action"><%= link_to (image_tag "admin/information.png"), admin_mobile_service_path(mobile_service) %></td>
-    <td><%= link_to (image_tag "admin/pencil.png"), edit_admin_mobile_service_path(mobile_service) %></td>
-    <td><%= link_to (image_tag "admin/delete.png"), admin_mobile_service_path(mobile_service), :confirm => 'Are you sure?', :method => :delete %></td>
+    <td class="first_action" title="see details"><%= link_to (image_tag "admin/information.png"), admin_mobile_service_path(mobile_service) %></td>
+    <td title="edit"><%= link_to (image_tag "admin/pencil.png"), edit_admin_mobile_service_path(mobile_service) %></td>
+    <td title="delete"><%= link_to (image_tag "admin/delete.png"), admin_mobile_service_path(mobile_service), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Mobile service', new_admin_mobile_service_path %>

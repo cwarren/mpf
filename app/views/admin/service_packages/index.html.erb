@@ -1,0 +1,21 @@
+
+<h3><%= link_to 'New Package', new_admin_service_package_path %></h3>
+
+
+<table class="index_lister">
+
+<% @service_packages.each do |service_package| %>
+  <tr>  
+    <td<%= ((service_package.is_live)?' title="live"':' class="not_live" title="not live"').html_safe %>><%= ((service_package.is_live)?(image_tag "admin/live.png"):(image_tag "admin/not_live.png")) %></td>
+    <td><% if service_package.icon.exists? then %>
+      <%= image_tag service_package.icon.url(:base) %>
+    <% else %>
+      NO ICON! (should never be seen!)
+    <% end %></td>
+    <td><%= service_package.title %></td>
+    <td class="first_action" title="see details"><%= link_to (image_tag "admin/information.png"), admin_service_package_path(service_package) %></td>
+    <td title="edit"><%= link_to (image_tag "admin/pencil.png"), edit_admin_service_package_path(service_package) %></td>
+    <td title="delete"><%= link_to (image_tag "admin/delete.png"), admin_service_package_path(service_package), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>

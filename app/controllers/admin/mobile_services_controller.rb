@@ -30,7 +30,7 @@ class Admin::MobileServicesController < Admin::AdminController
   def create
     @mobile_service = MobileService.new(params[:mobile_service])
     if @mobile_service.save
-      redirect_to(admin_mobile_service_url(@mobile_service), :notice => 'Mobile service was successfully created.')
+      redirect_to(admin_mobile_service_url(@mobile_service), :notice => 'Service was successfully created.')
     else
       render "new"
     end
@@ -40,7 +40,7 @@ class Admin::MobileServicesController < Admin::AdminController
   def update
     @mobile_service = MobileService.find(params[:id])
     if @mobile_service.update_attributes(params[:mobile_service])
-      redirect_to(admin_mobile_service_url(@mobile_service), :notice => 'Mobile service was successfully updated.')
+      redirect_to(admin_mobile_service_url(@mobile_service), :notice => 'Service was successfully updated.')
     else
       render "edit"
     end

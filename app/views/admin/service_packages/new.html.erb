@@ -1,0 +1,7 @@
+<%= form_for(@service_package,
+             :html => { :multipart => true },
+             :url => admin_service_packages_path ) do |f| %>
+<%= render 'form_contents', :f => f %>
+<% end %>
+
+<%= link_to 'Cancel', admin_service_packages_path %>

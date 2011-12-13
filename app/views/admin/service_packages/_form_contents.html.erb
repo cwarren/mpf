@@ -1,0 +1,64 @@
+
+  <% if @service_package.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@service_package.errors.count, "error") %> prohibited this service_package from being saved:</h2>
+
+      <ul>
+      <% @service_package.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field">
+    <%= f.label :title %>
+    <div class="form_input"><%= f.text_field :title %></div>
+  </div>
+  <div class="field">
+    <%= f.label :urltitle %>
+    <div class="form_input">http://<%=@servername%>/<%= f.text_field :urltitle %></div>
+  </div>
+  <div class="field">
+    <%= f.label 'Icon' %>
+    <div class="form_input"><%= f.file_field :icon, :class=>"icon_input" %><% if @service_package.icon.exists? then %>
+      <%= image_tag @service_package.icon.url(:small), :class=>"icon_view" %>
+    <% end %></div>
+  </div>
+  <div class="field">
+    <%= f.label :description %>
+    <div class="form_input"><%= f.text_area :description , :rows => 4%></div>
+  </div>
+
+  <div class="field">
+    <%= f.label :flag_show_description %>
+    <div class="form_input"><%= f.check_box :flag_show_description, {:class=>"flag_show_description_checkbox"} %></div>
+  </div>
+    
+  <div class="field">
+    <%= f.label :display_style %>
+    <div class="form_input"><%= f.select :display_style, [['list','list'],['grid','grid']] %></div>
+  </div>
+  
+  <div class="field">
+    <%= f.label :flag_show_root_link %>
+    <div class="form_input"><%= f.check_box :flag_show_root_link, {:class=>"flag_show_root_link_checkbox"} %></div>
+  </div>
+  
+  <div class="field">
+    <%= f.label :is_restricted %>
+    <div class="form_input"><%= f.check_box :is_restricted, {:class=>"is_restricted_checkbox"} %></div>
+  </div>
+
+  <% if controller.action_name != 'new'%>
+  <div class="field">
+    <%= f.label :is_live %>
+    <div class="form_input"><%= f.check_box :is_live, {:class=>"is_live_checkbox"} %></div>
+  </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
