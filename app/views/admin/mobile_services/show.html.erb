@@ -1,0 +1,65 @@
+<p id="notice"><%= notice %></p>
+
+<div class="left_col">
+
+  <div class="field">
+    <label><b>Title:</b></label>
+    <div class="value"><%= @mobile_service.title %></div>
+  </div>
+
+  <div class="field">
+    <label><b>URL Title:</b></label>
+    <div class="value"><%= @mobile_service.urltitle %></div>
+  </div>
+  <div class="field">
+    <label><b>Icon:</b></label>
+    <div class="value"><% if @mobile_service.icon.exists? then %>
+      <%= image_tag @mobile_service.icon.url(:small) %>
+    <% else %>
+      NO ICON! (should never be seen!)
+    <% end %></div>
+  </div>  
+  <div class="field">
+    <label><b>Description:</b></label>
+    <div class="value"><%= @mobile_service.description %></div>
+  </div>
+  <div class="field">
+    <label><b>URL:</b></label>
+    <div class="value"><%= @mobile_service.url %></div>
+  </div>
+  <div class="field">
+    <label><b>Type:</b></label>
+    <div class="value"><%= @mobile_service.service_type %></div>
+  </div>
+  <div class="field">
+    <label><b>Is live:</b></label>
+    <div class="value"><%= @mobile_service.is_live %></div>
+  </div>
+  <div class="field">
+    <label><b>Is restricted:</b></label>
+    <div class="value"><%= @mobile_service.is_restricted %></div>
+  </div>
+
+
+</div>
+
+<div class="right_col">
+<div class="service_package_list">
+ <b>In Service Packages:</b>
+ <ul>
+ <% if (@mobile_service.package_memberships.empty?) %>
+  <li>None</li>
+ <% else %>
+     <% @mobile_service.package_memberships.each do |pm| %>
+       <% sp = pm.service_package %>
+   <li><%= link_to ((image_tag sp.icon.url(:base)) + sp.title),
+                   admin_service_package_path(sp) %></li>
+     <% end
+   end %>
+ </ul>
+</div>
+</div>
+
+<br clear="all"/>
+<%= link_to 'Edit', edit_admin_mobile_service_path(@mobile_service) %> |
+<%= link_to 'All Services', admin_mobile_services_path %>

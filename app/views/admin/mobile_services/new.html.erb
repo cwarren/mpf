@@ -1,0 +1,7 @@
+<%= form_for(@mobile_service,
+             :html => { :multipart => true },
+             :url => admin_mobile_services_path ) do |f| %>
+<%= render 'form_contents', :f => f %>
+<% end %>
+
+<%= link_to 'Cancel', admin_mobile_services_path %>

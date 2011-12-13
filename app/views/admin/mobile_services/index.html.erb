@@ -1,0 +1,27 @@
+<table  class="index_lister">
+
+<% @mobile_services.each do |mobile_service| 
+  url_class="type_unknown"
+  if (@service_types.include?(mobile_service.service_type))
+    url_class="type_"+mobile_service.service_type
+  end
+  %>
+  <tr>
+    <td><%= mobile_service.title %></td>
+    <td><% if mobile_service.icon.exists? then %>
+      <%= image_tag mobile_service.icon.url(:base) %>
+    <% else %>
+      NO ICON! (should never be seen!)
+    <% end %></td>
+    <td<%= (mobile_service.is_live)?"":" class=not_live"%>><%= (mobile_service.is_live)?"Live":"Not Live"%></td>
+    <td<%= (mobile_service.is_restricted)?" class=restricted":"" %>><%= (mobile_service.is_restricted)?"Restricted":"Not Restricted" %></td>
+    <td class="first_action"><%= link_to (image_tag "admin/information.png"), admin_mobile_service_path(mobile_service) %></td>
+    <td><%= link_to (image_tag "admin/pencil.png"), edit_admin_mobile_service_path(mobile_service) %></td>
+    <td><%= link_to (image_tag "admin/delete.png"), admin_mobile_service_path(mobile_service), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Mobile service', new_admin_mobile_service_path %>

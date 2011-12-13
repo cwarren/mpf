@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%=@page_title || "Williams Mobile Admin"%></title>
+  <%= stylesheet_link_tag    "admin/application" %>
+  <%= javascript_include_tag "admin/application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $(".button").hover(button_over, button_out);
+  function button_over(evt)
+  {
+    $(this).css("cursor", "pointer");
+  }
+  function button_out(evt)
+  {
+  }
+});
+</script>
+
+<div class="admin_nav">
+ <ul>
+  <li><%= link_to 'Admin Home', admin_pages_home_path %></li>
+  <li><%= link_to 'Mobile Services', admin_mobile_services_path %></li>
+  <li><%= link_to 'Service Packages', admin_service_packages_path %></li>
+  <li><%= link_to 'Users', admin_users_path %></li>
+  <li><%= link_to 'Help', admin_pages_help_path %></li>
+  <li class="logout_item"><%= link_to 'Logout', admin_logout_path %></li>
+ </ul>
+</div>
+
+<h1><%=@page_title%></h1>
+
+<%= yield %>
+
+</body>
+</html>

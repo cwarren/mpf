@@ -1,0 +1,53 @@
+  <% if @mobile_service.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@mobile_service.errors.count, "error") %> prohibited this mobile_service from being saved:</h2>
+
+      <ul>
+      <% @mobile_service.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %>
+    <div class="form_input"><%= f.text_field :title %></div>
+  </div>
+  <div class="field">
+    <%= f.label :urltitle %>
+    <div class="form_input">http://<%=@servername%>/<%= f.text_field :urltitle %></div>
+  </div>
+  <div class="field">
+    <%= f.label 'Icon' %>
+    <div class="form_input"><%= f.file_field :icon, :class=>"icon_input" %><% if @mobile_service.icon.exists? then %>
+      <%= image_tag @mobile_service.icon.url(:small), :class=>"icon_view" %>
+    <% end %></div>
+  </div>
+  <div class="field">
+    <%= f.label :description %>
+    <div class="form_input"><%= f.text_area :description, :rows => 4 %></div>
+  </div>
+
+  <div class="field">
+    <%= f.label :url %>
+    <div class="form_input"><%= f.text_field :url %></div>
+  </div>
+  
+  <div class="field">
+    <%= f.label :service_type %>
+    <div class="form_input"><%= f.select(:service_type, options_for_select(get_service_types_options_array,(@mobile_service.service_type? ? @mobile_service.service_type : "embedded")))%></div>
+  </div>
+  
+  <div class="field">
+    <%= f.label :is_live %>
+    <div class="form_input"><%= f.check_box :is_live %></div>
+  </div>
+  <div class="field">
+    <%= f.label :is_restricted %>
+    <div class="form_input"><%= f.check_box :is_restricted %></div>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+

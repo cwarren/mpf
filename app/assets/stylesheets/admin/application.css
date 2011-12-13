@@ -1,0 +1,130 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_self
+ *= require_tree . 
+*/
+
+body {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size:   11pt;
+
+}
+
+h1 {clear: both;}
+
+/*-----------------------------*/
+
+.admin_nav {
+  height: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.admin_nav ul li {
+  list-style-type: none;
+  padding: 5px;
+  margin: 2px;
+  background: #ddd;
+  float: left;
+  width: 150px;
+  text-align: center;
+}
+
+.admin_nav ul li.logout_item {
+  background: #fdd;
+}
+
+/*-----------------------------*/
+
+.left_col {
+  width: 48%;
+  float: left;
+}
+
+.right_col {
+  width: 48%;
+  float: right;
+}
+
+.live {}
+.not_live { background: #ff6; }
+.restricted { border: 2px dashed #22b; }
+.not_restricted {}
+
+/*-----------------------------*/
+
+.field {
+  clear: both;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  height: 30px;
+}
+
+.field label {
+  display: block;
+  float: left;
+  width: 30%;
+  text-align: right;
+  font-weight: bold;
+}
+
+.field .form_input,
+.field .value {
+  float: left;
+  margin-left: 5px;
+  max-width: 65%;
+}
+
+.field .icon_input {
+  float:left;
+  vertical-align: top;
+}
+.field .icon_view {
+  float:left;
+  vertical-align: top;
+  margin-left: 5px;
+}
+
+form .actions {
+  clear: both;
+}
+
+/*-----------------------------*/
+
+.action_button {
+  text-align: center;
+  font-weight: bold;
+  width: 30px;
+  margin-top: 17px;
+}
+
+.add_button {
+  color: #373;
+  border: 2px solid #373;
+  background: #9d9;
+  float: left;
+  margin-right: 2px;
+}
+
+.remove_button {
+  color: #733;
+  border: 2px solid #733;
+  background: #d99;
+  float: right;
+  margin-left: 2px;
+}
+
+.ordering_handle {
+  float: left;
+  margin-right: 2px;
+  height: 57px;
+  width: 30px;
+}
+
+.available_services .ordering_handle {
+    display:none;
+}
+
+/*-----------------------------*/

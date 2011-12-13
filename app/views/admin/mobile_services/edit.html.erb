@@ -1,0 +1,101 @@
+<script type="text/javascript">
+$(document).ready(function(){
+
+  $(".in_package  .add_button").hide();
+  $(".out_of_package  .remove_button").hide();
+
+  var no_package_item = "<li>This service is not in any packages.</li>";
+
+  $(".add_button").click(
+    function()
+      {
+        var cached_this = this;
+        //alert("add");
+
+        $.ajax(
+          {
+            url: '<%=admin_package_memberships_path%>',
+            type: 'POST',
+            data: {action: 'create',
+                   item: <%=@mobile_service.id.to_s%>, 
+                   package: $(this).parent().parent().attr("for"),
+                   item_type: '<%=@mobile_service.class.to_s%>'},
+            success:function(data, textStatus) 
+              {
+                //alert("data is "+data); //DEBUG
+                $(".package_lister ul li:contains('This service is not in any packages.')").remove();
+                $(cached_this).parent().find(".button").toggle();
+                $(cached_this).parent().removeClass("out_of_package");
+                $(cached_this).parent().addClass("in_package");
+                $(cached_this).parent().parent().attr("as",data);
+              },
+            error:function(request, textStatus, errorThrown)
+              {
+                alert("could not put this service in that package: "+errorThrown);
+              }
+          });
+      });
+
+  $(".remove_button").click(
+    function()
+      {
+        var cached_this = this;
+        //alert("remove");
+
+        $.ajax(
+          {
+            url: '/admin/package_memberships/'+$(cached_this).parent().parent().attr("as"),
+            type: 'DELETE',
+            data: {action: 'destroy',
+                   id: $(this).parent().parent().attr("as")},
+            success:function(data, textStatus) 
+              {
+                $(cached_this).parent().parent().attr("as","0");
+                $(cached_this).parent().find(".button").toggle();
+                $(cached_this).parent().removeClass("in_package");
+                $(cached_this).parent().addClass("out_of_package");
+                if ($(".package_lister ul li .in_package").length == 0) { 
+                  $(".package_lister ul").prepend(no_package_item);
+                }          
+              },
+            error:function(request, textStatus, errorThrown)
+              {
+                alert("could not remove this service from that package: "+errorThrown);
+              }
+          });
+      });
+      
+});
+</script>
+
+<div class="left_col service_info">
+<%= form_for(@mobile_service,
+             :html => { :multipart => true },
+             :url => admin_mobile_service_path(@mobile_service) ) do |f| %>
+<%= render 'form_contents', :f => f %>
+<% end %>
+</div>
+
+<div class="right_col">
+  <div class="package_lister">
+    <h2>Package Membership</h2>
+    <ul class="package_list">
+<%if @mobile_service.package_memberships.empty?%>
+      <li>This service is not in any packages.</li>
+<%else%>
+  <%@mobile_service.package_memberships.each do |pm|
+      sp = pm.service_package %>
+      <%=admin_service_package_item(sp,pm, "<div class=\"button_container in_package\">"+add_button+remove_button+"</div><div class=\"package_container\">","</div>")%>
+  <%end%>
+<%end%>
+<%@packages_not_in.each do |sp|%>
+      <%=admin_service_package_item(sp, nil, "<div class=\"button_container out_of_package\">"+add_button+remove_button+"</div><div class=\"package_container\">","</div>")%>
+<%end%>
+    </ul>
+  </div>
+</div>
+
+<br clear="all"/>
+
+<%= link_to 'Show', admin_mobile_service_path(@mobile_service) %> |
+<%= link_to 'All Services', admin_mobile_services_path %>
