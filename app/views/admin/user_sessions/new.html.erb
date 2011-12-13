@@ -1,2 +1,22 @@
-<h1>Admin::UserSessions#new</h1>
-<p>Find me in app/views/admin/user_sessions/new.html.erb</p>
+
+<div class="login_box">
+<%= form_tag "/auth/ldap",:method => "post" do %>
+  <div class="form_item">
+    <div class="form_label"><label for='username'>Username:</label></div>
+    <div class="form_input"><input type='text' id='username' name='username'/></div>
+  </div>
+  
+  <div class="form_item">
+    <div class="form_label"><label for='password'>Password:</label></div>
+    <div class="form_input"><input type='password' id='password' name='password'/></div>
+  </div>
+
+  <%= submit_tag 'Sign in', :disable_with => 'Signing in...'%>
+<% end %>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#username").focus();
+});
+</script>

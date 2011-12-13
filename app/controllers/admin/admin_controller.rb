@@ -3,7 +3,7 @@ class Admin::AdminController < ApplicationController
   layout "admin/application"
 
   # login disabled for testing
-  #before_filter :require_login
+  before_filter :require_login
   before_filter :get_server_name
   before_filter :define_service_types
   
