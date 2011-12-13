@@ -1,3 +1,73 @@
 // Place all the styles related to the Admin::MobileServices controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/*-----------------------------*/
+/* service editing */
+
+.package_lister {
+  border: 1px solid #000;
+  padding: 2px;
+}
+
+.package_lister ul.package_list {
+  padding: 0;
+}
+
+.package_lister ul.package_list li {
+  list-style: none;
+  border: 1px solid #22b;
+  margin: 2px;
+  padding: 2px;
+  height: 62px;
+}
+
+.button_container {
+  width: 48px;
+  height: 48px;
+  float: left;
+  margin-right: 4px;
+  padding: 3px;
+}
+
+.package_container {
+  /*float: left;*/
+  height: 64px;
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.package_container .content_block {
+  height: 57px;
+}
+
+
+.package_container .type_package {
+  background-image: url(img/package.PNG);
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+.package_container .icon_block {
+    width: 57px;
+    height: 57px;
+    margin-right: 4px;
+}
+
+.package_container .icon_block {
+    float: left;
+}
+
+.in_package {
+  margin-left: 3px;
+  border: 3px solid #2b2;
+  background: #aea;
+}
+
+.out_of_package  {
+  margin-left: 32px;
+  border: 3px solid #b22;
+  background: #eaa;
+}

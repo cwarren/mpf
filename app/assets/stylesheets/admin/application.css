@@ -15,6 +15,7 @@ body {
 h1 {clear: both;}
 
 /*-----------------------------*/
+/* pan-admin nav */
 
 .admin_nav {
   height: 30px;
@@ -37,6 +38,7 @@ h1 {clear: both;}
 }
 
 /*-----------------------------*/
+/* general page structures */
 
 .left_col {
   width: 48%;
@@ -48,12 +50,25 @@ h1 {clear: both;}
   float: right;
 }
 
+/*-----------------------------*/
+/* all index pages */
+
+table.index_lister td {
+  padding: 3px;
+}
+
+table.index_lister td.first_action {
+  padding: 3px;
+  padding-left: 32px;
+}
+
 .live {}
 .not_live { background: #ff6; }
 .restricted { border: 2px dashed #22b; }
 .not_restricted {}
 
 /*-----------------------------*/
+/* all show, new, and edit pages */
 
 .field {
   clear: both;
@@ -92,6 +107,7 @@ form .actions {
 }
 
 /*-----------------------------*/
+/* all edit pages */
 
 .action_button {
   text-align: center;

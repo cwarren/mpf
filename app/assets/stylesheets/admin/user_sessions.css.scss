@@ -1,3 +1,27 @@
 // Place all the styles related to the Admin::UserSessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.login_box {
+  width: 300px;
+  margin: auto;
+  text-align: center;
+  border: 1px solid black;
+  padding: 9px;
+}
+
+.login_box .form_item {
+  width: 290px;
+  height: 30px;
+  margin-top: 3px;
+  margin-bottom: 9px;
+}
+
+.login_box .form_label {
+  width: 100px;
+  float: left;
+}
+.login_box .form_input {
+  width: 160px;
+  float: left;
+}

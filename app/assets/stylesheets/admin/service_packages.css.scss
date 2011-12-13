@@ -1,3 +1,52 @@
 // Place all the styles related to the Admin::ServicePackages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/*-----------------------------*/
+/* package editing */
+
+.mobile_service_chooser h2 {
+  text-decoration: underline;
+}
+
+.mobile_service_chooser {
+  /* border: 1px solid #000; */
+  padding: 2px;
+}
+
+.services_in_package {
+  /* border: 1px solid #000; */
+  padding: 2px;
+}
+
+.available_services {
+  /* border: 1px solid #000; */
+  padding: 2px;
+}
+
+.services_in_package ul,
+.available_services ul {
+  padding: 0;
+}
+
+.services_in_package li,
+.available_services li {
+  list-style: none;
+  /*border: 1px solid #22b;*/
+  margin: 2px;
+  padding: 2px;
+  height: 65px;
+  margin-left: 0;
+}
+
+
+/*-----------------------------*/
+/* package viewing */
+
+.mobile_service_list ul li {
+  list-style: none;
+  margin: 2px;
+  padding: 2px;
+  height: 65px;
+  margin-left: 0;
+}
