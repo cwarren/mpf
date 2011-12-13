@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<div>
+  <div class="field">
+    <label><b>Username:</b></label>
+    <div class="value"><%= @user.username %></div>
+  </div>
+  <div class="field">
+    <label><b>First Name:</b></label>
+    <div class="value"><%= @user.first_name %></div>
+  </div>
+  <div class="field">
+    <label><b>Last Name:</b></label>
+    <div class="value"><%= @user.last_name %></div>
+  </div>
+  <div class="field">
+    <label><b>Role:</b></label>
+    <div class="value"><%= @user.role %></div>
+  </div>
+</div>
+
+<%= link_to 'Edit', edit_admin_user_path(@user) %> |
+<%= link_to 'All Users', admin_users_path %>

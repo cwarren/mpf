@@ -1,0 +1,6 @@
+<%= form_for(@user, :url => admin_user_path(@user) ) do |f| %>
+<%= render 'form_contents', :f => f %>
+<% end %>
+
+<%= link_to 'Show', admin_user_path(@user) %> |
+<%= link_to 'Cancel', admin_users_path %>

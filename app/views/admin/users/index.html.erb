@@ -1,0 +1,27 @@
+<table class="index_lister">
+  <tr>
+    <th>Username</th>
+    <th>First</th>
+    <th>Last</th>
+    <th>Role</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @users.each do |user| %>
+  <tr>
+    <td><%= user.username %></td>
+    <td><%= user.first_name %></td>
+    <td><%= user.last_name %></td>
+    <td><%= user.role %></td>
+    <td class="first_action"><%= link_to (image_tag "admin/information.png"), admin_user_path(user) %></td>
+    <td><%= link_to (image_tag "admin/pencil.png"), edit_admin_user_path(user) %></td>
+    <td><%= link_to (image_tag "admin/delete.png"), admin_user_path(user), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New User', new_admin_user_path %>
