@@ -16,3 +16,4 @@
 
 # ignore application data
 /public/data
+/public/feed_cache

@@ -15,10 +15,14 @@ class AdaptiveController < ApplicationController
         render 'mobile_services/show'       
         return
       else
-        redirect_to :controller=>"mobile_services",:action=>"index"
+        redirect_to :controller=>"service_packages",:action=>"show", :id=>'home'
       end
     else
-      obj = ServicePackage.find_by_urltitle(params[:urltitle])
+      if (params[:urltitle].nil?)
+        obj = ServicePackage.find_by_urltitle('home')
+      else
+        obj = ServicePackage.find_by_urltitle(params[:urltitle])
+      end
       if (!obj.nil? && obj.is_live)
         @service_package = obj
         @page_title = @service_package.title        
@@ -26,7 +30,7 @@ class AdaptiveController < ApplicationController
         render 'service_packages/show'
         return
       else
-        redirect_to :controller=>"service_packages",:action=>"index"
+        redirect_to :controller=>"service_packages",:action=>"show", :id=>'home'
       end
     end
   end

@@ -27,6 +27,7 @@ class MobileService < ActiveRecord::Base
     :styles => {
                 :base     => "57x57#",
                 :x2       => "114x114#",
+                :small16  => "16x16#",
                 :small    => "29x29#",
                 :small50  => "50x50#",
                 :x2small  => "58x58#",
