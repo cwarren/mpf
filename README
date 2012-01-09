@@ -1,1 +1,22 @@
 Mobile Presence Framework
+
+TODO
+
+CURRENT
+
+re-examine RSS handling
+    - move feed maintenance to a daemon process (see https://github.com/ssoroka/scheduler_daemon)
+        + NOTE: hopefully this will provide enough speed boost that the below options aren't necessary... but will 
+        probably need more speed
+            * consider caching generated HTML to allow skipping of parsing step during live use; would need to 
+            refactor to centralize the HTML generating code somehow so it's accessible to daemon as well as main
+            (main still needs it for robustness)
+    - less desirable: do NOT pre-load RSS feeds
+        + option 1: stage them to be loaded post-page-load via JS (if possible - iOS didn't play well with that before)
+        + option 2: load them only when demanded
+        + NOTE: not sure either will work with JS; i.e. post-load DOM manip often plays merry hell with JS event listeners
+
+allow header images for packages
+    - create table fields
+    - display it if it exists
+        + handle sizing for tablets

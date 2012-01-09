@@ -55,7 +55,10 @@ class ApplicationController < ActionController::Base
   def process_if_feed(s)
     #logger.debug("process_if_feed for "+s.title)
 
-    feed_frequency = 300 # 5 minutes
+    feed_frequency = 3600 # 60 minutes
+    # NOTE: the feed updates should be managed by a daemon so in theory this code will
+    # never need to freshen the cache, but it's here in case the daemon isn't working
+    # for some reason.
 
     if (s.service_type == "feed")
 
