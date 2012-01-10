@@ -4,6 +4,14 @@ TODO
 
 CURRENT
 
+show/*
+    - 16x icons are too large - they're not centered vertically (NOTE: this might be a problem for Kate to tackle)
+
+admin/service_package/edit/
+    - available service packages aren't showing the package packground (img/package.PNG is not loading)
+        + name wrong?
+        + location wrong?
+
 re-examine RSS handling
     - move feed maintenance to a daemon process (see https://github.com/ssoroka/scheduler_daemon)
         + NOTE: hopefully this will provide enough speed boost that the below options aren't necessary... but will 

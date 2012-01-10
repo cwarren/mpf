@@ -16,7 +16,7 @@ packages.each do |p|
       if (items_in_package.length > 0) %>
         <ul data-role="listview" data-inset="true"<%= (items_in_package.length > 9) ? ' data-filter="true"' : ''%>><%
         items_in_package.each do |pi|
-          which_icon = pi.icon.url(:small16)
+          which_icon = pi.icon.url(:small)
           if (pi.class.to_s == "MobileService")
 
             if (pi.service_type =~ /embedded/) %>
