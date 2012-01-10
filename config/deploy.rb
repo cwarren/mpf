@@ -85,3 +85,4 @@ end
 
 after "deploy:update_code", "bundler:bundle_new_release"
 after "deploy:update_code", "deploy:symlink_shared"
+after :deploy, "assets:precompile"

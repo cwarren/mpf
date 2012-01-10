@@ -15,7 +15,8 @@ Mpf::Application.configure do
   config.assets.compress = true
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
-  config.assets.compile = false
+  # CSW 2012/01/10 - DO use fallback!
+  config.assets.compile = true
 
   # Generate digests for assets URLs
   config.assets.digest = true
