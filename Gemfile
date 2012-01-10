@@ -20,9 +20,6 @@ gem 'jquery-rails', '~> 1.0'
 
 gem "jquery_mobile-rails"
 
-#gem 'execjs'
-
-#gem 'therubyracer', :platforms => :ruby
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -39,4 +36,6 @@ end
 
 group :production do
   gem 'mysql2'
+  gem 'execjs'
+  gem 'therubyracer', :platforms => :ruby
 end
