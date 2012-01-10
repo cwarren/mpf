@@ -51,8 +51,8 @@ namespace :bundler do
   task :bundle_new_release, :roles => :app do
     'bundler:create_symlink'
     #run "cd #{release_path} && LC_ALL='en_US.UTF-8' bundle install --path vendor/bundle --without test development"
-    #run "cd #{release_path} && LC_ALL='en_US.UTF-8' bundle install --without test development"
-    run "cd #{release_path} && bundle --deployment --without test development"
+    run "cd #{release_path} && export LC_ALL='en_US.UTF-8' && bundle install --without test development"
+    #run "cd #{release_path} && bundle --deployment --without test development"
     #run "cd #{release_path} && bundle --deployment"
   end
   
