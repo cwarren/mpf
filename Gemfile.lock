@@ -214,7 +214,7 @@ DEPENDENCIES
   git
   hashie (< 1.0.0)
   htmlentities
-  jquery-rails
+  jquery-rails (~> 1.0)
   jquery_mobile-rails
   mysql2
   omniauth!

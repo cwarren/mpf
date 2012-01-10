@@ -16,7 +16,7 @@ gem 'capistrano'
 
 gem 'git'
 
-gem 'jquery-rails'
+gem 'jquery-rails', '~> 1.0' 
 
 gem "jquery_mobile-rails"
 
