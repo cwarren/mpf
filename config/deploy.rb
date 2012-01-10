@@ -70,8 +70,8 @@ namespace :deploy do
   desc "Symlink shared configs and folders on each release."
   task :symlink_shared do
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
-    run "ln -nfs #{shared_path}/data #{release_path}/public"
-    run "ln -nfs #{shared_path}/feed_cache #{release_path}/public"
+    run "ln -nfs #{shared_path}/data #{release_path}/public/data"
+    run "ln -nfs #{shared_path}/feed_cache #{release_path}/public/feed_cache"
 #    run "ln -nfs #{shared_path}/assets #{release_path}/public/assets"
 #    run "ln -nfs #{shared_path}/config/initializers/mailer_config.rb #{release_path}/config/initializers/mailer_config.rb"
   end
