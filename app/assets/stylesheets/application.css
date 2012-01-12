@@ -11,8 +11,9 @@
 .ui-li-thumb {
     margin-right: 20px !important;
     top: 6px !important; 
+    padding-left: 32px !important;
 }
 
 .ui-li-has-icon a {
-    padding-left: 50px !important;
+    padding-left: 82px !important;
 }
