@@ -4,15 +4,33 @@ TODO
 
 CURRENT
 
-show/*
-    - 16x icons are too large - they're not centered vertically (NOTE: this might be a problem for Kate to tackle)
+change process RSS to be 10 or 15 min intervals instead of 1 hour
+
+tweak list item icon positions
+    - for package show, 29x icons are not centered vertically and need a larger right margin (NOTE: this might be a problem for Kate to tackle)
+
+implement show for individual services
+
+
+implement cron-ed home page instantiation
+    - add home page instantiation to deploy script
+
+
+look into why the arts llfeed isn't working correctly (showing 'all' instead - possibly a caching thing?)
+    - confirm what should be included in 'arts': performances and exhibits?
+    - confirm what should be included in 'public': lectures/talks... and performances?
+    
 
 admin/service_package/edit/
-    - available service packages aren't showing the package packground (img/package.PNG is not loading)
+    - available service packages aren't showing the package background (img/package.PNG is not loading)
         + name wrong?
         + location wrong?
+        
+add google tracking code
+
 
 re-examine RSS handling
+NOTE: this is rendered unnecessary by static page instantiation!
     - move feed maintenance to a daemon process (see https://github.com/ssoroka/scheduler_daemon)
         + NOTE: hopefully this will provide enough speed boost that the below options aren't necessary... but will 
         probably need more speed
@@ -23,6 +41,7 @@ re-examine RSS handling
         + option 1: stage them to be loaded post-page-load via JS (if possible - iOS didn't play well with that before)
         + option 2: load them only when demanded
         + NOTE: not sure either will work with JS; i.e. post-load DOM manip often plays merry hell with JS event listeners
+
 
 allow header images for packages
     - create table fields
