@@ -1,2 +1,44 @@
-<h1>MobileService#show</h1>
-<p>Find me in app/views/mobile_service/show.html.erb</p>
+  <div data-role="page" id="service-<%=@mobile_service.id.to_s%>" data-add-back-btn="false">
+    <div data-role="header" data-position="fixed" data-title="<%=@page_title || 'Williams Mobile'%>">
+      <h1><%=@mobile_service.title%></h1>
+    </div>
+    <div data-role="content"><%
+
+      if @mobile_service.service_type=="embedded"%>
+        <iframe src="<%=@mobile_service.url%>" width="100%" style="min-height: 85%">iframes not supported</iframe><%
+      elsif (@mobile_service.service_type =~ /feed/)%>
+        <ul data-role="listview" data-filter="true">
+          <% prev_pub_date = nil
+          @mobile_service.items.each do |rsi| 
+            if (! rsi.nil?)
+              new_pub_date = (rsi.pubDate.nil?) ? '' : rsi.pubDate.strftime("%A, %B %-d")
+              if (new_pub_date != prev_pub_date)%>
+                <li data-role="list-divider"><%=new_pub_date%></li><%
+                prev_pub_date = new_pub_date
+              end
+              feed_item_contents = "no details available"
+              if (! rsi.content_encoded.nil?)
+                feed_item_contents = (coder.decode(rsi.content_encoded)).html_safe
+              elsif (! rsi.description.nil?)
+                feed_item_contents = (coder.decode(rsi.description)).html_safe
+              end
+              # Daily Message specific code - not appropriate for general RSS handling
+              #feed_item_contents.sub!(/.*?\n/,'')
+              #feed_item_contents.sub!(/, for (Students|Faculty|Staff|Students, Faculty|Students, Staff|Faculty, Staff|Students, Faculty, Staff)\Z/,'</p><p class="ui-li-aside">\1')
+              %>
+              <li>
+                <h3><%=(coder.decode(rsi.title)).html_safe%></h3>
+                <p style="white-space:normal"><%=feed_item_contents.html_safe%></p>
+              </li><% 
+            end 
+          end %>
+       </ul><%
+      end %>
+
+
+
+    </div>
+    <div data-role="footer" data-position="fixed">
+      footer
+    </div>
+  </div>
