@@ -11,6 +11,7 @@
           <% prev_pub_date = nil
           @mobile_service.items.each do |rsi| 
             if (! rsi.nil?)
+              coder = HTMLEntities.new
               new_pub_date = (rsi.pubDate.nil?) ? '' : rsi.pubDate.strftime("%A, %B %-d")
               if (new_pub_date != prev_pub_date)%>
                 <li data-role="list-divider"><%=new_pub_date%></li><%

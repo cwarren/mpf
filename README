@@ -27,7 +27,7 @@ add google tracking code
 
 
 re-examine RSS handling
-NOTE: this is rendered unnecessary by static page instantiation!
+NOTE: this is rendered unnecessary by static page instantiation ('baking')!
     - move feed maintenance to a daemon process (see https://github.com/ssoroka/scheduler_daemon)
         + NOTE: hopefully this will provide enough speed boost that the below options aren't necessary... but will 
         probably need more speed
