@@ -4,7 +4,10 @@ TODO
 
 CURRENT
 
-implement show for individual services
+when listing services and packages, if icon is missing show nothing instead of a broken link
+
+alter capistrano to allow deployment to dev site
+
 
 make the footer a partial instead of hard coded in each template (and/or move it to the layout file)
     - !NOTE: to put it in the layout file the closing of the content div would be split across files; that's not a blocker, but it's something to consider

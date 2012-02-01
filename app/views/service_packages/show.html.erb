@@ -37,7 +37,7 @@ packages.each do |p|
                   (pi.service_type == "native android" && android_request?) ||
                   (pi.service_type != "native iOS" && pi.service_type != "native android")) %>
                   
-             <li data-icon="forward" data-iconpos="left" class="ui-btn-icon-left" ><a href="<%=pi.url%>" style="padding-left: 70px;" rel="external" target="_new"><%=image_tag which_icon, :class=>"ui-li-icon", :style=>"padding-left: 32px;"%><%=pi.title%></a></li><%
+             <li data-icon="forward" class="link_off_app" ><a href="<%=pi.url%>" style="padding-left: 70px;" rel="external"><%=image_tag which_icon, :class=>"ui-li-icon", :style=>"padding-left: 32px;"%><%=pi.title%></a></li><%
             
             end # pi.service_type i-t-e cascade
           elsif (pi.class.to_s == "ServicePackage") %>
