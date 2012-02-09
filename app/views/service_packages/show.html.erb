@@ -3,10 +3,13 @@ packages = [@service_package] # a dynamic list; starts out with just the request
 leaf_services = [] # internal 'pages'
 rss_items = [] # package items which are rss feeds, not the items in the feed
 
+package_counter = 0
+
 packages.each do |p|
+  package_counter = package_counter + 1
 %>
 
-  <div data-role="page" id="package-<%=p.id.to_s%>" data-add-back-btn="true">
+  <div data-role="page" id="package-<%=p.id.to_s%>" data-add-back-btn="true"<%=(package_counter>1 ? ' class="sub-level-package"' : '').html_safe%>>
     <div data-role="header" data-position="fixed" data-back-btn-text="back" data-title="<%=@page_title || 'Williams Mobile'%>">
       <h1><%=p.title%></h1>
     </div>
