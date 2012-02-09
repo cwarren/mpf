@@ -120,7 +120,8 @@ class ApplicationController < ActionController::Base
         ##ic = Iconv.new('UTF-8//IGNORE', 'UTF-8')
         ##cfile.puts ic.iconv(rss.source + ' ')[0..-2]
         
-        cfile.puts rss.source.encode('UTF-8', 'UTF-8', :invalid => :replace)
+        #cfile.puts rss.source.encode('UTF-8', 'UTF-8', :invalid => :replace)
+        cfile.puts rss.source.encode('UTF-16', 'UTF-8', :invalid => :replace, :replace => '').encode('UTF-8', 'UTF-16')
         cfile.close
         rss = SimpleRSS.parse open(cache_file) # re-open from cache file to avoid Encoding::UndefinedConversionError from ASCII-8BIT to UTF-8
       end
