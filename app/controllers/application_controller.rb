@@ -62,7 +62,7 @@ class ApplicationController < ActionController::Base
     if (s.service_type == "feed")
 
       cache_file = Rails.root.to_s+"/public/feed_cache/"+s.url.hash.to_s
-      # logger.debug "cache file is "+ cache_file
+       logger.debug "cache file is "+ cache_file
       freshen_cache = false
       feed_source = s.url
       if (File.exists?(cache_file))
@@ -70,10 +70,11 @@ class ApplicationController < ActionController::Base
         staleness = Time.now - File.ctime(cache_file)
         #logger.debug staleness.to_s+"\n"
         if (staleness < feed_frequency)
-          #logger.debug "using the cache"
+          logger.debug "using the cache"
+          freshen_cache = false
           feed_source = cache_file
         else
-          #logger.debug "cache is old - get the live data"
+          logger.debug "cache is old - get the live data"
           freshen_cache = true
           cfile = File.open(cache_file,"w")
         end
@@ -84,6 +85,8 @@ class ApplicationController < ActionController::Base
       end
       #logger.debug "feed source is "+feed_source
       
+      #logger.debug "A: cfile file is "+ cfile
+
       begin
         rss = SimpleRSS.parse open(feed_source)
       rescue Exception => e
@@ -93,6 +96,7 @@ class ApplicationController < ActionController::Base
           if (feed_source == cache_file)
             rss = SimpleRSS.parse open(s.url)
             freshen_cache = true
+            cfile = File.open(cache_file,"w")
           else
             rss = SimpleRSS.parse open(cache_file)
           end
@@ -111,8 +115,12 @@ class ApplicationController < ActionController::Base
       end
 
       if (freshen_cache)
-        #logger.debug "freshening the cache"
-        cfile.puts rss.source.force_encoding("UTF-8")
+        logger.debug "freshening the cache"
+        #cfile.puts rss.source.force_encoding("UTF-8")
+        ##ic = Iconv.new('UTF-8//IGNORE', 'UTF-8')
+        ##cfile.puts ic.iconv(rss.source + ' ')[0..-2]
+        
+        cfile.puts rss.source.encode('UTF-8', 'UTF-8', :invalid => :replace)
         cfile.close
         rss = SimpleRSS.parse open(cache_file) # re-open from cache file to avoid Encoding::UndefinedConversionError from ASCII-8BIT to UTF-8
       end

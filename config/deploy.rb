@@ -30,10 +30,9 @@ set :branch, "master"
 set :deploy_via, :remote_cache
 
 
-# this is handled by the stages settings instead of hard-coded here
-#role :web, "mobile-web1.williams.edu"                          # Your HTTP server, Apache/etc
-#role :app, "mobile-web1.williams.edu"                          # This may be the same as your `Web` server
-#role :db,  "mobile-web1.williams.edu", :primary => true # This is where Rails migrations will run
+role :web, "mobile-web1.williams.edu"                          # Your HTTP server, Apache/etc
+role :app, "mobile-web1.williams.edu"                          # This may be the same as your `Web` server
+role :db,  "mobile-web1.williams.edu", :primary => true # This is where Rails migrations will run
 
 
 
