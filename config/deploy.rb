@@ -25,7 +25,7 @@ default_run_options[:pty] = true  # Must be set for the password prompt from git
 set :repository, "git@github.com:cwarren/mpf.git"  # Your clone URL
 set :scm, "git"
 set :user, "cwarren"  # The server's user for deploys
-#set :scm_passphrase, "there's an exception to every rule except this one"
+#set :scm_passphrase, ""
 ssh_options[:forward_agent] = true
 set :use_sudo, false
 set :runner, 'cwarren'
