@@ -4,8 +4,6 @@ TODO
 
 CURRENT
 
-when listing services and packages, if icon is missing show nothing instead of a broken link
-
 alter capistrano to allow deployment to dev site
 
 

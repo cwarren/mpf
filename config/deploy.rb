@@ -1,3 +1,7 @@
+set :stages, %w(production staging)
+#set :default_stage, "staging"
+require 'capistrano/ext/multistage'
+
 set :application, "mpf"
 set :deploy_to, "/var/www/apps/#{application}"
 #set :repository,  "git@github.com:cwarren/mpf.git"
@@ -30,10 +34,10 @@ set :branch, "master"
 set :deploy_via, :remote_cache
 
 
-
-role :web, "mobile-web1.williams.edu"                          # Your HTTP server, Apache/etc
-role :app, "mobile-web1.williams.edu"                          # This may be the same as your `Web` server
-role :db,  "mobile-web1.williams.edu", :primary => true # This is where Rails migrations will run
+# this is handled by the stages settings instead of hard-coded here
+#role :web, "mobile-web1.williams.edu"                          # Your HTTP server, Apache/etc
+#role :app, "mobile-web1.williams.edu"                          # This may be the same as your `Web` server
+#role :db,  "mobile-web1.williams.edu", :primary => true # This is where Rails migrations will run
 
 
 
