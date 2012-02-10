@@ -133,7 +133,18 @@ class ApplicationController < ActionController::Base
         end
         #cfile.puts rss.source.encode('UTF-16', 'UTF-8', :invalid => :replace, :replace => '').encode('UTF-8', 'UTF-16')
         cfile.close
-        rss = SimpleRSS.parse open(cache_file) # re-open from cache file to avoid Encoding::UndefinedConversionError from ASCII-8BIT to UTF-8
+        begin
+          rss = SimpleRSS.parse open(cache_file) # re-open from cache file to avoid Encoding::UndefinedConversionError from ASCII-8BIT to UTF-8
+        rescue Exception => e
+          rss = SimpleRSS.parse '<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" xmlns:georss="http://www.georss.org/georss" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
+ <channel><title>Feed Problem</title><description/><link/>
+  <item>
+   <title>Feed Problem</title>
+  <description>There was a problem with the data in the feed</description>
+  <pubDate>Mon, 14 Nov 2011 12:00:00 -0500</pubDate>
+  <link/>
+</item></channel></rss>'
+        end
       end
 
       s.items = rss.items

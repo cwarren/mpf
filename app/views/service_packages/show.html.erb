@@ -17,7 +17,7 @@ packages.each do |p|
       <%
       items_in_package = (p.package_items.select{|o| o.package_item.is_live}).collect{|pm| pm.package_item } 
       if (items_in_package.length > 0) %>
-        <ul data-role="listview" data-inset="true"<%= (items_in_package.length > 9) ? ' data-filter="true"' : ''%>><%
+        <ul data-role="listview" data-inset="true"<%= ((items_in_package.length > 12) ? ' data-filter="true"' : '').html_safe%>><%
         items_in_package.each do |pi|
           which_icon = pi.icon.url(:small)
           if (pi.class.to_s == "MobileService")
