@@ -9,7 +9,7 @@ packages.each do |p|
   package_counter = package_counter + 1
 %>
 
-  <div data-role="page" id="package-<%=p.id.to_s%>" data-add-back-btn="true"<%=(package_counter>1 ? ' class="sub-level-package"' : '').html_safe%>>
+  <div data-role="page" id="package-<%=p.id.to_s%>" data-add-back-btn="true" class="<%=(package_counter>1 ? 'sub-level-package' : 'top-level-package').html_safe%>">
     <div data-role="header" data-position="fixed" data-back-btn-text="back" data-title="<%=@page_title || 'Williams Mobile'%>">
       <h1><%=p.title%></h1>
     </div>
