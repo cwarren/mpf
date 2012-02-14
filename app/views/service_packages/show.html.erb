@@ -14,6 +14,7 @@ packages.each do |p|
       <h1><%=p.title%></h1>
     </div>
     <div data-role="content">
+      <div class="branding_block <%=p.urltitle%>_branding_block"></div>
       <%
       items_in_package = (p.package_items.select{|o| o.package_item.is_live}).collect{|pm| pm.package_item } 
       if (items_in_package.length > 0) %>
