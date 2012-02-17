@@ -31,6 +31,7 @@ Mpf::Application.routes.draw do
 
   # NOTE: this has to go after all the namespace definitions or else the name space roots will match this route
   match "/:urltitle" => "adaptive#reroute", :as => :urltitle, :via=>:get
+  match "/force/:urltitle" => "adaptive#reroute", :as => :urltitle, :via=>:get
 
   #root :to => 'service_packages', :action=>'show', :id=>'home'
 

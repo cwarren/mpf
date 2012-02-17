@@ -1,6 +1,9 @@
 class AdaptiveController < ApplicationController
 
   def reroute
+    
+    #logger.debug("urltitle is "+params[:urltitle])
+    
     if (obj = MobileService.find_by_urltitle(params[:urltitle]))
       if ((obj.is_live) && (! obj.is_restricted))
         @mobile_service = obj
