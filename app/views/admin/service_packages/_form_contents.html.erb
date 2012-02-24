@@ -20,6 +20,12 @@
     <%= f.label :urltitle %>
     <div class="form_input">http://<%=@servername%>/<%= f.text_field :urltitle %></div>
   </div>
+
+  <div class="field">
+    <%= f.label :full_site_url %>
+    <div class="form_input"><%= f.text_field :full_site_url %> <span class="commentary">(this is optional - it is used to generate a link to a full / desktop page that corresponds to this item)</span></div>
+  </div>
+
   <div class="field">
     <%= f.label 'Icon' %>
     <div class="form_input"><%= f.file_field :icon, :class=>"icon_input" %><% if @service_package.icon.exists? then %>

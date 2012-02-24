@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110615154811) do
+ActiveRecord::Schema.define(:version => 20120224191455) do
 
   create_table "mobile_services", :force => true do |t|
     t.string   "title",             :default => ""
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20110615154811) do
     t.boolean  "is_restricted",     :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "full_site_url"
   end
 
   create_table "package_memberships", :force => true do |t|
@@ -53,6 +54,7 @@ ActiveRecord::Schema.define(:version => 20110615154811) do
     t.boolean  "flag_show_description", :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "full_site_url"
   end
 
   create_table "users", :force => true do |t|

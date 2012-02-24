@@ -10,6 +10,10 @@
     <div class="value"><i>http://<%=@servername%>/</i><%= @service_package.urltitle %></div>
   </div>
   <div class="field">
+    <label><b>Full Site URL:</b></label>
+    <div class="value"><%= @service_package.full_site_url %></div>
+  </div>
+  <div class="field">
     <label><b>Icon:</b></label>
     <div class="value"><% if @service_package.icon.exists? then %>
       <%= image_tag @service_package.icon.url(:small) %>

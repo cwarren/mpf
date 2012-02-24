@@ -33,6 +33,11 @@
     <%= f.label :url %>
     <div class="form_input"><%= f.text_field :url %></div>
   </div>
+
+  <div class="field">
+    <%= f.label :full_site_url %>
+    <div class="form_input"><%= f.text_field :full_site_url %> <span class="commentary">(this is optional - it is used to generate a link to a full / desktop page that corresponds to this item)</span></div>
+  </div>
   
   <div class="field">
     <%= f.label :service_type %>
