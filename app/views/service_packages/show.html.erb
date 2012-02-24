@@ -20,18 +20,22 @@ packages.each do |p|
       if (items_in_package.length > 0) %>
         <ul data-role="listview" data-inset="true"<%= ((items_in_package.length > 12) ? ' data-filter="true"' : '').html_safe%>><%
         items_in_package.each do |pi|
-          which_icon = pi.icon.url(:small)
+          #which_icon = pi.icon.url(:small)
+          icon_tag = ''
+          if (p.urltitle == 'home')
+            icon_tag = image_tag pi.icon.url(:small), :class=>"ui-li-icon"
+          end
           if (pi.class.to_s == "MobileService")
 
             if (pi.service_type =~ /embedded/) %>
 
-              <li><a href="#service-<%=pi.id.to_s%>"><%=image_tag which_icon, :class=>"ui-li-icon"%><%=pi.title%></a></li><%
+              <li><a href="#service-<%=pi.id.to_s%>"><%=icon_tag%><%=pi.title%></a></li><%
               if (! leaf_services.include?(pi)) then leaf_services << pi end
 
             elsif (pi.service_type =~ /feed/)
 
               if ((! pi.items.nil?) && (pi.items.count >= 1))%>
-                <li><a href="#service-<%=pi.id.to_s%>"><%=image_tag which_icon, :class=>"ui-li-icon"%><%=pi.title%> <span class="ui-li-count"><%=pi.items.nil? ? '0' : pi.items.count.to_s%></span></a></li><%
+                <li><a href="#service-<%=pi.id.to_s%>"><%=icon_tag%><%=pi.title%> <span class="ui-li-count"><%=pi.items.nil? ? '0' : pi.items.count.to_s%></span></a></li><%
                 if (! rss_items.include?(pi))
                   rss_items << pi
                 end
@@ -41,11 +45,11 @@ packages.each do |p|
                   (pi.service_type == "native android" && android_request?) ||
                   (pi.service_type != "native iOS" && pi.service_type != "native android")) %>
                   
-             <li data-icon="forward" class="link_off_app" ><a href="<%=pi.url%>" style="padding-left: 70px;" rel="external"><%=image_tag which_icon, :class=>"ui-li-icon", :style=>"padding-left: 32px;"%><%=pi.title%></a></li><%
+             <li data-icon="forward" class="link_off_app" ><a href="<%=pi.url%>" style="padding-left: 70px;" rel="external"><%=icon_tag%><%=pi.title%></a></li><%
             
             end # pi.service_type i-t-e cascade
           elsif (pi.class.to_s == "ServicePackage") %>
-            <li><a href="#package-<%=pi.id.to_s%>"><%=image_tag which_icon, :class=>"ui-li-icon"%><%=pi.title%></a></li><%
+            <li><a href="#package-<%=pi.id.to_s%>"><%=icon_tag%><%=pi.title%></a></li><%
             if (! packages.include?(pi)) then packages << pi end
           end
         end # items_in_package.each 
