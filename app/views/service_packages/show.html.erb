@@ -103,6 +103,9 @@ packages.each do |p|
               elsif (! rsi.description.nil?)
                 feed_item_contents = (coder.decode(rsi.description)).html_safe
               end
+              if (! rsi.author.nil? && rs.title =~ /WSO/i)
+                feed_item_contents = feed_item_contents + " &nbsp;&nbsp; --".html_safe + coder.decode(rsi.author).html_safe
+              end
               # Daily Message specific code - not appropriate for general RSS handling
               #feed_item_contents.sub!(/.*?\n/,'')
               #feed_item_contents.sub!(/, for (Students|Faculty|Staff|Students, Faculty|Students, Staff|Faculty, Staff|Students, Faculty, Staff)\Z/,'</p><p class="ui-li-aside">\1')
