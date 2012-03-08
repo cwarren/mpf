@@ -58,9 +58,6 @@ packages.each do |p|
       end # if (items_in_package.length > 0)
       %>
     </div>
-    <div data-role="footer" data-position="fixed">
-        <div><a href="<%=p.full_site_url.nil? ? 'http://www.williams.edu/' : p.full_site_url %>" data-role="none" class="footer_link">full site</a></div>
-    </div>
   </div>
 <%end%>
 
@@ -72,9 +69,6 @@ packages.each do |p|
       </div>
       <div data-role="content" >
         <iframe src="<%=s.url%>" width="100%" style="min-height: 85%">iframes not supported</iframe>
-      </div>
-      <div data-role="footer" data-position="fixed">
-        <div><a href="<%=s.full_site_url.nil? ? 'http://www.williams.edu/' : s.full_site_url %>" data-role="none" class="footer_link">full site</a></div>
       </div>
     </div><%
     end
@@ -121,9 +115,6 @@ packages.each do |p|
             end 
           end %>
          </ul>
-      </div>
-      <div data-role="footer" data-position="fixed">
-        <div><a href="<%=rs.full_site_url.nil? ? 'http://www.williams.edu/' : rs.full_site_url %>" data-role="none" class="footer_link">full site</a></div>
       </div>
     </div>
 
