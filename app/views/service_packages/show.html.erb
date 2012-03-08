@@ -45,7 +45,7 @@ packages.each do |p|
                   (pi.service_type == "native android" && android_request?) ||
                   (pi.service_type != "native iOS" && pi.service_type != "native android")) %>
                   
-             <li data-icon="forward" class="link_off_app" ><a href="<%=pi.url%>" style="padding-left: 70px;" rel="external"><%=icon_tag%><%=pi.title%></a></li><%
+             <li data-icon="forward" class="link_off_app" ><a href="<%=pi.url%>" rel="external"><%=icon_tag%><%=pi.title%></a></li><%
             
             end # pi.service_type i-t-e cascade
           elsif (pi.class.to_s == "ServicePackage") %>
@@ -100,8 +100,12 @@ packages.each do |p|
               feed_item_contents = "no details available"
               if (! rsi.content_encoded.nil?)
                 feed_item_contents = (coder.decode(rsi.content_encoded)).html_safe
+              elsif (! rsi.content.nil?)
+                feed_item_contents = (coder.decode(rsi.content)).html_safe
               elsif (! rsi.description.nil?)
                 feed_item_contents = (coder.decode(rsi.description)).html_safe
+              elsif (! rsi.summary.nil?)
+                feed_item_contents = (coder.decode(rsi.summary)).html_safe
               end
               if (! rsi.author.nil? && rs.title =~ /WSO/i)
                 feed_item_contents = feed_item_contents + " &nbsp;&nbsp; --".html_safe + coder.decode(rsi.author).html_safe

@@ -20,8 +20,12 @@
               feed_item_contents = "no details available"
               if (! rsi.content_encoded.nil?)
                 feed_item_contents = (coder.decode(rsi.content_encoded)).html_safe
+              elsif (! rsi.content.nil?)
+                feed_item_contents = (coder.decode(rsi.content)).html_safe
               elsif (! rsi.description.nil?)
                 feed_item_contents = (coder.decode(rsi.description)).html_safe
+              elsif (! rsi.summary.nil?)
+                feed_item_contents = (coder.decode(rsi.summary)).html_safe
               end
               if (! rsi.author.nil? && @mobile_service.title =~ /WSO/i)
                 feed_item_contents = feed_item_contents + " &nbsp;&nbsp; --".html_safe + coder.decode(rsi.author).html_safe
