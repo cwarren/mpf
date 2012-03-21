@@ -17,44 +17,56 @@ packages.each do |p|
       <div class="branding_block <%=p.urltitle%>_branding_block"></div>
       <%
       items_in_package = (p.package_items.select{|o| o.package_item.is_live}).collect{|pm| pm.package_item } 
-      if (items_in_package.length > 0) %>
-        <ul data-role="listview" data-inset="true"<%= ((items_in_package.length > 12) ? ' data-filter="true"' : '').html_safe%>><%
-        items_in_package.each do |pi|
-          #which_icon = pi.icon.url(:small)
+
+      if (items_in_package.length > 0)
+      
+        if (p.urltitle=='all' || p.urltitle=='apps') %>
+          <ul data-role="listview" data-inset="true"<%= ((items_in_package.length > 12) ? ' data-filter="true"' : '').html_safe%>><%
           icon_tag = ''
-          if (p.urltitle == 'home')
-            icon_tag = image_tag pi.icon.url(:small), :class=>"ui-li-icon"
-          end
-          if (pi.class.to_s == "MobileService")
+          items_in_package.each do |pi| %>
+            <li data-icon="forward" class="link_off_app" ><a href="/<%=pi.urltitle%>" rel="external"><%=icon_tag%><%=pi.title%></a></li><%
+          end # items_in_package.each
+        else
+          %>
+          <ul data-role="listview" data-inset="true"<%= ((items_in_package.length > 12) ? ' data-filter="true"' : '').html_safe%>><%
+          items_in_package.each do |pi|
+            #which_icon = pi.icon.url(:small)
+            icon_tag = ''
+            if (p.urltitle == 'home')
+              icon_tag = image_tag pi.icon.url(:small), :class=>"ui-li-icon"
+            end
+            if (pi.class.to_s == "MobileService")
 
-            if (pi.service_type =~ /embedded/) %>
+              if (pi.service_type =~ /embedded/) %>
 
-              <li><a href="#service-<%=pi.id.to_s%>"><%=icon_tag%><%=pi.title%></a></li><%
-              if (! leaf_services.include?(pi)) then leaf_services << pi end
+                <li onclick="_gaq.push(['_trackPageview', '/<%=pi.urltitle%>'])"><a href="#service-<%=pi.id.to_s%>"><%=icon_tag%><%=pi.title%></a></li><%
+                if (! leaf_services.include?(pi)) then leaf_services << pi end
 
-            elsif (pi.service_type =~ /feed/)
+              elsif (pi.service_type =~ /feed/)
 
-              if ((! pi.items.nil?) && (pi.items.count >= 1))%>
-                <li><a href="#service-<%=pi.id.to_s%>"><%=icon_tag%><%=pi.title%> <span class="ui-li-count"><%=pi.items.nil? ? '0' : pi.items.count.to_s%></span></a></li><%
-                if (! rss_items.include?(pi))
-                  rss_items << pi
+                if ((! pi.items.nil?) && (pi.items.count >= 1))%>
+                  <li onclick="_gaq.push(['_trackPageview', '/<%=pi.urltitle%>'])"><a href="#service-<%=pi.id.to_s%>"><%=icon_tag%><%=pi.title%> <span class="ui-li-count"><%=pi.items.nil? ? '0' : pi.items.count.to_s%></span></a></li><%
+                  if (! rss_items.include?(pi))
+                    rss_items << pi
+                  end
                 end
-              end
-            
-            elsif ((pi.service_type == "native iOS" && ios_request?) ||
-                  (pi.service_type == "native android" && android_request?) ||
-                  (pi.service_type != "native iOS" && pi.service_type != "native android")) %>
-                  
-             <li data-icon="forward" class="link_off_app" ><a href="<%=pi.url%>" rel="external"><%=icon_tag%><%=pi.title%></a></li><%
-            
-            end # pi.service_type i-t-e cascade
-          elsif (pi.class.to_s == "ServicePackage") %>
-            <li><a href="#package-<%=pi.id.to_s%>"><%=icon_tag%><%=pi.title%></a></li><%
-            if (! packages.include?(pi)) then packages << pi end
-          end
-        end # items_in_package.each 
-        %>
-        </ul><%
+
+              elsif ((pi.service_type == "native iOS" && ios_request?) ||
+                    (pi.service_type == "native android" && android_request?) ||
+                    (pi.service_type != "native iOS" && pi.service_type != "native android")) %>
+
+               <li data-icon="forward" class="link_off_app" ><a href="<%=pi.url%>" rel="external"><%=icon_tag%><%=pi.title%></a></li><%
+
+              end # pi.service_type i-t-e cascade
+            elsif (pi.class.to_s == "ServicePackage") %>
+              <li onclick="_gaq.push(['_trackPageview', '/<%=pi.urltitle%>'])"><a href="#package-<%=pi.id.to_s%>"><%=icon_tag%><%=pi.title%></a></li><%
+              if (! packages.include?(pi)) then packages << pi end
+            end
+          end # items_in_package.each 
+          %>
+          </ul><%
+        end
+        
       end # if (items_in_package.length > 0)
       %>
     </div>

@@ -4,44 +4,22 @@ TODO
 
 CURRENT
 
-alter capistrano to allow deployment to dev site
+add google tracking code
+    - basic tracking code on page load (JS in header)
+    - on embed and rss elements, track list item clicks
+        + http://code.google.com/intl/en/apis/analytics/docs/tracking/asyncUsageGuide.html
+        + <li onclick="_gaq.push(['_trackPageview', '/<%=item.urltitle%>'])">blah</li>
 
+consider text/code-based embedding instead of iframe embedding
 
-make the footer a partial instead of hard coded in each template (and/or move it to the layout file)
-    - !NOTE: to put it in the layout file the closing of the content div would be split across files; that's not a blocker, but it's something to consider
-
-implement cron-ed home page instantiation
-    - add home page instantiation to deploy script
-
-
-look into why the arts llfeed isn't working correctly (showing 'all' instead - possibly a caching thing?)
-    - confirm what should be included in 'arts': performances and exhibits?
-    - confirm what should be included in 'public': lectures/talks... and performances?
-    
+create special 'apps' package?
 
 admin/service_package/edit/
     - available service packages aren't showing the package background (img/package.PNG is not loading)
         + name wrong?
         + location wrong?
-        
-add google tracking code
 
-
-re-examine RSS handling
-NOTE: this is rendered unnecessary by static page instantiation ('baking')!
-    - move feed maintenance to a daemon process (see https://github.com/ssoroka/scheduler_daemon)
-        + NOTE: hopefully this will provide enough speed boost that the below options aren't necessary... but will 
-        probably need more speed
-            * consider caching generated HTML to allow skipping of parsing step during live use; would need to 
-            refactor to centralize the HTML generating code somehow so it's accessible to daemon as well as main
-            (main still needs it for robustness)
-    - less desirable: do NOT pre-load RSS feeds
-        + option 1: stage them to be loaded post-page-load via JS (if possible - iOS didn't play well with that before)
-        + option 2: load them only when demanded
-        + NOTE: not sure either will work with JS; i.e. post-load DOM manip often plays merry hell with JS event listeners
-
-
-allow header images for packages
+allow header images for packages?
     - create table fields
     - display it if it exists
         + handle sizing for tablets
